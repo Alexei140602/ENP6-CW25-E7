@@ -11,68 +11,75 @@
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        
       }
     </style>
+    <link rel="stylesheet" href="../Statics/proyecto.css">
 </head>
 <body>
     
+    
     <!--Barra de busqueda-->
     <aside id="barraOpciones">
+        <div>
             <h4 class="titulo">Explore</h4>
             <hr>
             <div id="home">
-                <image class="iconoOpcion"></image>
-                <button class="selector" id="homebtn">Home</button>
+                
+                <button class="selector" id="homebtn"><image class="iconoOpcion" id="homeImg" src="../Statics/imagenes/iconoHome.png"></image>  Home</button>
             </div>
-            <div id="bibliotecas">
-                <image class="iconoOpcion"></image>
-                <button class="selector" id="bibliotecasbtn">Bibliotecas</button>
+        </div>
+        <div id="bibliotecas">
+            
+            <button class="selector" id="bibliotecasbtn"><image class="iconoOpcion" id="bibliotecasImg" src="../Statics/imagenes/iconoBiblioteca.png"></image>  Bibliotecas</button>
 
-                <div id="despegadoBiblio" >
-                    <div id="artDest">
-                        <image class="iconoOpcion"></image>
-                        <button class="selector" id="artDestbtn">Artistas Destacados</button>
-                    </div>
-                    <div id="generos">
-                        <image class="iconoOpcion"></image>
-                        <button class="selector" id="generosbtn">Géneros</button>
-                    </div>
-                    <div id="albums">
-                        <image class="iconoOpcion"></image>
-                        <button class="selector" id="generosbtn">Géneros</button>
-                    </div>
-                </div>    
+            <div id="desplegaBiblio" >
+                <div id="artDest">
+                
+                    <button class="selector" id="artDestbtn"><image class="iconoOpcion" id="ArtDestImg" src="../Statics/imagenes/iconoArtDest.png"></image>  Artistas Destacados</button>
+                </div>
+                <div id="generos">
+                    
+                    <button class="selector" id="generosbtn"><image class="iconoOpcion" id="generosImg" src="../Statics/imagenes/iconoGeneros.png"></image>  Géneros</button>
+                </div>
+                <div id="albums">
+                
+                    <button class="selector" id="albumsbtn"><image class="iconoOpcion" id="albumsImg" src="../Statics/imagenes/iconoAlbums.png"></image>  Albums</button>
+                </div>
+            </div>    
 
-            </div>
-            <div id="listas">
-                <image class="iconoOpcion"></image>
-                <button class="selector" id="listasbtn">Listas</button>
-            </div>
-            <div id="reciente">
-                <image class="iconoOpcion"></image>
-                <button class="selector" id="recientebtn">Reciente</button>
-            </div>
-            <div id="tu">
-                <image class="iconoOpcion"></image>
-                <button class="selector" id="tubtn">Tú</button>
-            </div>
-
-        </aside>
-
+        </div>
+        <div id="listas">
+        
+            <button class="selector" id="listasbtn"><image class="iconoOpcion" id="listasImg" src="../Statics/imagenes/iconoListas.png"></image>  Listas</button>
+        </div>
+        <div id="reciente">
+            
+            <button class="selector" id="recientebtn"><image class="iconoOpcion" id="recienteImg" src="../Statics/imagenes/iconoRecientes.png"></image>  Reciente</button>
+        </div>
+        <div id="tu">
+        
+            <button class="selector" id="tubtn"><image class="iconoOpcion" id="tuImg" src="../Statics/imagenes/iconoTu.png"></image>  Tú</button>
+        </div>
+           
+    </aside>
+        
     <!--barra de navegacion-->
-    <nav>
+    <nav id="barraNavegacion">
         <h1>SonoroJDF</h1>
         <form>
             <input type="text" id="barraBusqueda" placeholder="¿Estás aburrido? :(">
         </form>
         <button id="btnUsuario" img="../Statics/imagenes/imgUsuario.jpg"></button>
 
-    </nav>
+    </nav>--
+    <aside id="contenido">
+    
     <!--Pagina de inicio-->
     <section>
         
         
-    </section>
+    </section> 
 
     
     
@@ -97,44 +104,43 @@
             <label for="subirUsuario">Aceptar</label>
             <input type="submit" id="subirUsuario">
         </form>
-    </div>
+    </div> 
 
     <!--Cola de Reproducción-->
     <div id="colaRep">
         
     </div>
-
     <!--Artistas-->
     <article id="artistas">
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="edSheeran"><img src="../Statics/imagenes/edSheeranArtistas.jpg" 
                 id="imagenesArtistas"></button>
             <h5 id="Ed Sheeran"></h5>
         </div>
 
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="adele"><img src="../Statics/imagenes/adeleArtistas.webp" 
                 id="imagenesArtistas"></button>
             <h5 id="Adele"></h5>
         </div>
         
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="avrilLavigne"><img src="../Statics/imagenes/avrilLavigneArtistas.jpg" 
                 id="imagenesArtistas"></button>
             <h5 id="Avril Lavigne"></h5>
         </div>
         
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="indila"><img src="../Statics/imagenes/indilaArtistas.jpg" 
                 id="imagenesArtistas"></button>
             <h5 id="Indila"></h5>
         </div>
 
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="mecano"><img src="../Statics/imagenes/mecanoArtistas.jpg" 
                 id="imagenesArtistas"></button>
@@ -155,14 +161,14 @@
             <h5 id="BTS"></h5>
         </div>
 
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="coldplay"><img src="../Statics/imagenes/coldplayArtistas.jpg" 
                 id="imagenesArtistas"></button>
             <h5 id="Coldplay"></h5>
         </div>
         
-        <div id="reecuadroObs">
+        <div id="reecuadroObs"> 
         <!--Botón con la imagen-->
             <button id="marina"><img src="../Statics/imagenes/marinaArtista.jpg" 
                 id="imagenesArtistas"></button>
@@ -176,11 +182,12 @@
             <h5 id="Rammstein"></h5>
         </div>
         
-    </article>
+    </article> 
     
     <!--Géneros-->
     <article>
         
     </article>
+    </aside>
 </body>
 </html>

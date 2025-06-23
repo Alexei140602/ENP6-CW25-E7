@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.iconoOpcion{
+    height: 100%;
+    width: 11%;
+}
+.selector{
+    width: 100%;
+    background-color: #ffffff00;
+    color: #ffffff;
+    text-align: start;
+    margin-bottom: 7px;
+}
+label{
+    color: #ffffff;
+}
+
+.titulo{
+    color: #ffffff;
+    text-align: center;
+}
+
+#barraOpciones{
+    height: 100%;
+    width: 15%;
+    background-color: rgba(69, 69, 69, 0.474);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+   
+
+} 
+#barraNavegacion{
+    width: 50%;
+    background-color: rgba(69, 69, 69, 0.67);
+    position:sticky;
+    display: flex;
+    margin: 0px 0px 0px 25% ;
+    justify-content: center;
+
+}
+#contenido{
+    width: 85%;
+
+    padding: 0px 0px 0px 15% ;
+    position:static;
+}
+ /*
+#desplegaBiblio{
+    display: none;
+}
