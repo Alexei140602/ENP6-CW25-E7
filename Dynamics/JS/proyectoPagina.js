@@ -1,13 +1,14 @@
 let botonArtistas = document.getElementById("artDestbtn");
 
 botonArtistas.addEventListener("click", ()=>{
+  botonArtistas.style.backgroundColor="rgb(0, 0, 0, 90%)";
   //Despliega los artistas
   let recuadroArtist = document.getElementById("artistas");
 
   if(recuadroArtist.style.display==='none'){
     recuadroArtist.style.display='inline';
     let contenedorArts = document.getElementById("artistas");
-
+    
     //Despliega el botón con nombre e imágen
     for (let i=0; i<baseDatosJSON.artistas.length; i++){
         let nuevoBoton = document.createElement("button");
@@ -53,38 +54,41 @@ botonArtistas.addEventListener("click", ()=>{
               nombreArtista.textContent=baseDatosJSON.artistas[i].nombre;
 
               totalArtistas.classList.add("artistasMenu");
-              artistaRecuadro.classList.add("artistasMenu");
               artistaRecuadro.id="artistaSeleccionado";
               imagenArtista.id="imgSelecArt";
 
-              totalArtistas.appendChild(artistaRecuadro);
               artistaRecuadro.appendChild(imagenArtista);
               artistaRecuadro.appendChild(nombreArtista);
               artistaRecuadro.appendChild(artistaDescripcion);
+              totalArtistas.appendChild(artistaRecuadro);
 
               //Despliega los albums del artista
               for(let i=0; i<baseDatosJSON.album.length; i++){
-                let secAlbums = document.createElement("div");
+                let secAlbums = document.createElement("button");
                 let secImgArt = document.createElement("img");
                 let albumTitle = document.createElement("h4");
+                let titleAlbumsDisp = document.createElement("h2");
                 //let secCanciones = document.createElement("p");
 
                 if(baseDatosJSON.album[i].artista === valor){
                   secImgArt.src=baseDatosJSON.album[i].url_img;
                   albumTitle.textContent=baseDatosJSON.album[i].nombre;
+                  titleAlbumsDisp.textContent="Álbumes disponibles";
 
                   secImgArt.classList.add("imagenArtista");
-                  secAlbums.classList.add("artistasMenu");
-                  secAlbums.id="artistasAlbums";
+                  secAlbums.classList.add("artistasAlbums");
 
                   secAlbums.appendChild(secImgArt);
                   secAlbums.appendChild(albumTitle);
+                  totalArtistas.appendChild(titleAlbumsDisp);
                   totalArtistas.appendChild(secAlbums);
                 }
               }
             }
           }
         }); 
+        //Al dar click en el album; descripción, imagen, canciones
     }
+
   }
 });
