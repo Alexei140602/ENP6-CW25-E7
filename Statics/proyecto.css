@@ -66,6 +66,12 @@ body{
     width: 170px;
     height: 170px;
     border-radius: 5% 5% 5% 5%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.imagenArtista:hover{
+    width: 200px;
+    height: 200px;
 }
 .artistasMenu{
     background-color: rgb(57, 61, 94, 80%);
@@ -81,21 +87,32 @@ body{
 }
 #artistaSeleccionado{
     background-color: rgb(0,0,0,70%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
     color: rgb(255, 255, 255);
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 10px 5px;
     width: 400px;
     height: 100%;
 }
-#artistasAlbums{
+.artistasAlbums{
     background-color: rgb(0,0,0,70%);
+    border-radius: 5% 5% 5% 5%;
+    border: none;
+    font-size: 19px;
     color: rgb(255, 255, 255);
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    padding: 20px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
     width: 200px;
     height: 100%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.artistasAlbums:hover{
+    background-color: rgb(81,80,84,40%);
+    border: 2px solid rgb(255,255,255,85%);
+    font-size: 25px;
+    width: 230px;
 }
 #imgSelecArt{
     width: 400px;
