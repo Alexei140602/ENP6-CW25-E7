@@ -1,7 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-}
 .iconoOpcion{
     height: 100%;
     width: 11%;
@@ -29,8 +25,7 @@ label{
     position: fixed;
     display: flex;
     flex-direction: column;
-   
-
+    margin: 0px 20px 0px 0px !important;
 } 
 #barraNavegacion{
     width: 50%;
@@ -47,11 +42,11 @@ label{
     padding: 0px 0px 0px 15% ;
     position:static;
 }
+
  /*
 #desplegaBiblio{
     display: none;
 }
-
 
 /*Sección artistas y albums*/
 .formatoObs{
@@ -76,8 +71,7 @@ body{
     background-color: rgb(57, 61, 94, 80%);
     border-radius: 5% 5% 5% 5%;
     font-size: medium;
-    padding: 15px 15px 15px 15px;
-    margin: 5px 5px 5px 5px;
+    margin: 0px 0px 0px 224px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -91,7 +85,7 @@ body{
     flex-flow: row wrap;
     justify-content: center;
     width: 400px;
-    height: 100%;
+    height: 450px;
 }
 #artistasAlbums{
     background-color: rgb(0,0,0,70%);
@@ -107,3 +101,4 @@ body{
     height: 350px;
     border-radius: 5% 5% 5% 5%;
 }
+/*Sección artistas y albums*/
