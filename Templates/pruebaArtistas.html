@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de artistas</title>
+    <style>
+      body{
+        background-image: url("../Statics/imagenes/fondo.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+    <script src="../Dynamics/JS/baseDeDatos.js"></script>
+    <link  rel="stylesheet" href="../Statics/juego.css">
+</head>
+<body>
+  <!--Barra de busqueda-->
+    <aside id="barraOpciones">
+        <div>
+            <h3 class="titulo">Explore</h3>
+            <hr>
+            <div id="home">
+                <button class="selector" id="homebtn"><image class="iconoOpcion" id="homeImg" src="../Statics/imagenes/iconoHome.png"></image>  Home</button>
+            </div>
+        </div>
+        <div id="bibliotecas">
+            <button class="selector" id="bibliotecasbtn"><image class="iconoOpcion" id="bibliotecasImg" src="../Statics/imagenes/iconoBiblioteca.png"></image>  Bibliotecas</button>
+            
+            <div id="desplegaBiblio" >
+
+                <div id="artDest">
+                    <button class="selector" id="artDestbtn"><image class="iconoOpcion" id="ArtDestImg" src="../Statics/imagenes/iconoArtDest.png"></image>  Artistas Destacados</button>
+                </div>
+
+                <div id="generos">
+                    <button class="selector" id="generosbtn"><image class="iconoOpcion" id="generosImg" src="../Statics/imagenes/iconoGeneros.png"></image>  Géneros</button>
+                </div>
+
+                <div id="albums">
+                    <button class="selector" id="albumsbtn"><image class="iconoOpcion" id="albumsImg" src="../Statics/imagenes/iconoAlbums.png"></image>  Albums</button>
+                </div>
+            </div>    
+        </div>
+
+        <div id="listas">
+            <button class="selector" id="listasbtn"><image class="iconoOpcion" id="listasImg" src="../Statics/imagenes/iconoListas.png"></image>  Listas</button>
+        </div>
+
+        <div id="tu">
+            <button class="selector" id="tubtn"><image class="iconoOpcion" id="tuImg" src="../Statics/imagenes/iconoTu.png"></image>  Tú</button>
+        </div>
+           
+    </aside>
+
+      <!--Artistas y albums-->
+      <div id="artistas" style="display:none">
+        <h4 class="section">Artistas</h4>
+      </div>
+   
+</body>
+    <script src="../Dynamics/JS/proyectoPagina.js"></script>
+</html>
