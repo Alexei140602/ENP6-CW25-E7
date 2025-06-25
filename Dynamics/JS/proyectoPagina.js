@@ -45,7 +45,7 @@ botonArtistas.addEventListener("click", ()=>{
           let artistaDescripcion = document.createElement("h7");
           let imagenArtista = document.createElement("img");
           let nombreArtista = document.createElement("h4");
-
+          
           for(let i=0; i<baseDatosJSON.artistas.length; i++){
             //Despliega imagen, nombre y descripción del artista seleccionado
             if(baseDatosJSON.artistas[i].nombre === valor){
@@ -54,6 +54,7 @@ botonArtistas.addEventListener("click", ()=>{
               nombreArtista.textContent=baseDatosJSON.artistas[i].nombre;
 
               totalArtistas.classList.add("artistasMenu");
+              nombreArtista.id="artistaSelec";
               artistaRecuadro.id="artistaSeleccionado";
               imagenArtista.id="imgSelecArt";
 
@@ -62,33 +63,68 @@ botonArtistas.addEventListener("click", ()=>{
               artistaRecuadro.appendChild(artistaDescripcion);
               totalArtistas.appendChild(artistaRecuadro);
 
+              let titleAlbumsDisp = document.createElement("h2");
+              titleAlbumsDisp.textContent="Álbumes disponibles";
+              totalArtistas.appendChild(titleAlbumsDisp);
               //Despliega los albums del artista
               for(let i=0; i<baseDatosJSON.album.length; i++){
                 let secAlbums = document.createElement("button");
                 let secImgArt = document.createElement("img");
                 let albumTitle = document.createElement("h4");
-                let titleAlbumsDisp = document.createElement("h2");
                 //let secCanciones = document.createElement("p");
 
                 if(baseDatosJSON.album[i].artista === valor){
                   secImgArt.src=baseDatosJSON.album[i].url_img;
                   albumTitle.textContent=baseDatosJSON.album[i].nombre;
-                  titleAlbumsDisp.textContent="Álbumes disponibles";
 
-                  secImgArt.classList.add("imagenArtista");
+                  //totalArtistas.classList.add("artistasMenu");
+                  secImgArt.classList.add("imagenAlbum");
                   secAlbums.classList.add("artistasAlbums");
 
                   secAlbums.appendChild(secImgArt);
                   secAlbums.appendChild(albumTitle);
-                  totalArtistas.appendChild(titleAlbumsDisp);
                   totalArtistas.appendChild(secAlbums);
                 }
+                //Al dar click en el album; descripción, imagen, canciones
+                  secAlbums.addEventListener("click", ()=>{
+                  let despliegaAlbum = secAlbums.textContent;
+
+                  let totalArtistas = document.getElementById("artistas");
+                  totalArtistas.innerHTML="";
+
+                  //Creaión de recuadro album seleccionado
+                  for (let i=0; i<baseDatosJSON.album.length; i++){
+                    //Variables para el contenedor del album selec.
+                    let coloqAlbumSelec = document.createElement("div");
+                    let portAlbum = document.createElement("img");
+                    let albumTitlee = document.createElement("p");
+                    let artistSelectName = document.createElement("p");
+                    //let duracionTotal = document.createElement("p");
+                    console.log(despliegaAlbum);
+                    if(baseDatosJSON.album[i].artista === despliegaAlbum){
+                      portAlbum.src=baseDatosJSON.album[i].url_img;
+                      albumTitlee.textContent=baseDatosJSON.album[i].nombre;
+                      artistSelectName.textContent=baseDatosJSON.album[i].artista;
+
+                      portAlbum.classList.add("imagenAlbum");
+                      coloqAlbumSelec.classList.add("artistasAlbums");
+                      //Arreglar porque no funciona con todos
+                      coloqAlbumSelec.appendChild(portAlbum);
+                      coloqAlbumSelec.appendChild(albumTitlee);
+                      coloqAlbumSelec.appendChild(artistSelectName); 
+                      totalArtistas.appendChild(coloqAlbumSelec);
+                    }else{
+                      console.log("no es igual");
+                      console.log(baseDatosJSON.album[i].artista);
+                      console.log("el valor al que se compara " + despliegaAlbum);
+                    }
+                  }
+                });
               }
             }
           }
         }); 
-        //Al dar click en el album; descripción, imagen, canciones
     }
-
+    
   }
 });
