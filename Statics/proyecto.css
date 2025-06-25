@@ -57,6 +57,20 @@ label{
     padding: 15px 15px 15px 15px;
     margin: 5px 5px 5px 5px;
 }
+.verTodoG{
+    background-color: rgb(0,0,0,40%);
+    border-radius: 5% 5% 5% 5%;
+    font-size:small;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    width: 90px;
+    height: 50px;
+    margin: 5px 0px 5px 10px;
+}
+#generos{
+    display: block;
+}
+
 body{
     display: flex;
     flex-flow: row wrap;
@@ -120,3 +134,22 @@ body{
     border-radius: 5% 5% 5% 5%;
 }
 /*Sección artistas y albums*/
+
+/*Home*/
+
+body>
+#barraDerHome{
+    height: 100%;
+    width:20%;
+    position:fixed;
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgb(133, 64, 202);
+    text-align: center;
+
+}
+
+#homePerfiles{
+    display:flex;
+    flex-direction: column;
+}
