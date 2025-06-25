@@ -1,4 +1,10 @@
+let homeBoton = document.getElementById("homebtn");
 let botonArtistas = document.getElementById("artDestbtn");
+
+homeBoton.addEventListener("click", ()=>{
+  let recuadro = createElement("div");
+  
+});
 
 botonArtistas.addEventListener("click", ()=>{
   botonArtistas.style.backgroundColor="rgb(0, 0, 0, 90%)";
