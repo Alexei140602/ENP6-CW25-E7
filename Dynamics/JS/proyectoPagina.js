@@ -3,6 +3,8 @@ let botonGeneros = document.getElementById("generosbtn");
 let botonAlbums = document.getElementById("albumsbtn");
 let botonHome = document.getElementById("homebtn");
 let botonBiblioteca = document.getElementById("bibliotecasbtn");
+let inputBusc = document.querySelector("input");
+let resultados = document.getElementById("palabraB");
 
 const espacio = document.createElement("hr");
 
@@ -11,6 +13,40 @@ function limpiar(){
   let contenedorGeneral = document.getElementById("artistas");
   contenedorGeneral.innerHTML="";
 }
+inputBusc.addEventListener("focus", ()=>{
+  if(inputBusc === document.activeElement){
+    inputBusc.addEventListener("input", ()=>{
+      let valor = inputBusc.value.trim();
+
+      resultados.innerHTML="";
+    
+      if(valor != ""){
+        let cont=0;
+        resultados.style.display= "block";
+        
+        for(let i=0; i<baseDatosJSON.canciones.length; i++){
+          let cancion = baseDatosJSON.canciones[i].nombre;
+          
+          if(cancion.toUpperCase().includes(valor.toUpperCase())){
+            let busquedas = document.createElement("h5");
+            busquedas.textContent=cancion;
+
+            resultados.appendChild(busquedas);
+            cont++;
+          }
+        }
+        resultados.style.display = cont > 0? "block":"none";
+      }
+      else
+        resultados.style.display= "none";
+    });
+  }
+  else{
+    resultados.innerHTML="";
+    resultados.style.display= "none";
+  }
+});
+
 botonBiblioteca.addEventListener("click",()=>{
   //Boton artistas
   oculto=botonArtistas.style.display==="none";
@@ -401,6 +437,6 @@ botonAlbums.addEventListener("click", ()=>{
 
 botonHome.addEventListener("click", ()=>{
   botonHome.style.backgroundColor="rgb(0, 0, 0, 90%)";
-  //Limpia
+  //Despliega los artistas
     limpiar();
 });
