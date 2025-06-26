@@ -1,4 +1,3 @@
-/*Barra de opciones*/
 .iconoOpcion{
     height: 100%;
     width: 11%;
@@ -19,20 +18,20 @@ label{
     text-align: center;
 }
 
-#barraOpciones{
+#barraOpciones{ /*Volver a poner display:flex;*/
     height: 100%;
     width: 15%;
     background-color: rgba(69, 69, 69, 0.474);
     position: fixed;
-    display: flex;
+    display: none;
     flex-direction: column;
-    margin: 5.5% 20px 0px 0px !important;
+    margin: 0px 20px 0px 0px !important;
 } 
-#barraNavegacion{
+#barraNavegacion{ /*Volver a poner display:flex;*/
     width: 50%;
     background-color: rgba(69, 69, 69, 0.67);
     position:sticky;
-    display: flex;
+    display: none;
     margin: 0px 0px 0px 25% ;
     justify-content: center;
 
@@ -44,28 +43,14 @@ label{
     position:static;
 }
 
-/*Botones generales*/
-.generalT{
-    background-color: rgb(0,0,0,40%);
-    border-radius: 5% 5% 5% 5%;
-    font-size:10px;
-    color: rgb(255, 255, 255);
-    padding: 5px 5px 5px 5px;
-    width: 90px;
-    height: 70px;
-    margin: 2%;
-    transition-duration: 0.4s;
-    cursor:pointer;
-}
-.generalT:hover{
-    width: 200px;
-    height: 200px;
-    font-size: 15px;
+ /*
+#desplegaBiblio{
+    display: none;
 }
 
 /*Sección artistas y albums*/
 .formatoObs{
-    background-color: rgb(0,0,0,53%);
+    background-color: rgb(0,0,0,40%);
     border-radius: 5% 5% 5% 5%;
     font-size: medium;
     color: rgb(255, 255, 255);
@@ -76,7 +61,6 @@ body{
     display: flex;
     flex-flow: row wrap;
     justify-content: left;
-    margin: 0px 0px 0px 0px;
 }
 .imagenArtista{
     width: 170px;
@@ -86,69 +70,21 @@ body{
     cursor:pointer;
 }
 .imagenArtista:hover{
-    width: 190px;
-    height: 190px;
-}
-.imagenAlbum{
-    width: 170px;
-    height: 170px;
-    border-radius: 5% 5% 5% 5%;
+    width: 200px;
+    height: 200px;
 }
 .artistasMenu{
-    background-color: rgb(57, 61, 94, 60%);
+    background-color: rgb(57, 61, 94, 80%);
     border-radius: 5% 5% 5% 5%;
     font-size: medium;
     padding: 15px 15px 15px 15px;
-    margin: 2.5% 0.5% 0px 16%;
+    margin: 0px 0px 0px 15%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     width: 100%;
     height: 100%;
 }
-#contenedors{
-    background-color: rgba(57, 61, 94, 0.844);
-    padding: 15px 15px 15px 15px;
-    margin: 18% 0.5% 0px 16%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
-/*Barra de búsqueda*/
-#barraBusqueda{
-    background-color: rgba(34, 38, 63, 0.6);
-    border-radius: 5% 5% 5% 5%;
-    font-size: small;
-    padding: 15px 15px 15px 15px;
-    margin: 1% 5% 0px 35%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: right;
-    width: 50%;
-}
-@font-face {
-    font-family: 'Lost in South';
-    src: url('../Statics/Fonts/Lost\ in\ South.otf') format('truetype');
-}
-
-/*Nombre Pag*/
-#sonoro{
-    background-color: rgba(57, 61, 94, 0.93);
-    margin: 0px 0px 0px 0px !important;
-    padding: 8px 5px 7.8px 20px;
-    display: flex;
-    color:rgb(255, 255, 255);
-    flex-flow: row wrap;
-    justify-content: left;
-    font-family: 'Lost in South', sans-serif;
-    font-size: 50px;
-    width: 100%;
-    height: 5%;
-}
-
 #artistaSeleccionado{
     background-color: rgb(0,0,0,70%);
     border-radius: 5% 5% 5% 5%;
@@ -158,31 +94,12 @@ body{
     margin: 5px 5px 10px 5px;
     width: 400px;
     height: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-#albumSeleccionado{
-    background-color: rgba(0, 0, 0, 0.481);
-    border-radius: 5% 5% 5% 5%;
-    font-size: medium;
-    color: rgb(255, 255, 255);
-    padding: 15px 15px 15px 15px;
-    margin: 5px 5px 10px 5px;
-    width: 350px;
-    height: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-.contSecAlbum{
-    height: 300px;
 }
 .artistasAlbums{
     background-color: rgb(0,0,0,70%);
     border-radius: 5% 5% 5% 5%;
     border: none;
-    font-size: 17px;
+    font-size: 19px;
     color: rgb(255, 255, 255);
     padding: 20px 15px 15px 15px;
     margin: 5px 5px 5px 5px;
@@ -194,68 +111,73 @@ body{
 .artistasAlbums:hover{
     background-color: rgb(81,80,84,40%);
     border: 2px solid rgb(255,255,255,85%);
-    font-size: 19px;
-    width: 220px;
-}
-#artistaSelec{
-    font-size: 24px;
-    display: block;
-}
-#artistaInicio{
-    font-size: 24px;
-    background-color: rgba(57, 61, 94, 0.925);
-    display: block;
+    font-size: 25px;
+    width: 230px;
 }
 #imgSelecArt{
     width: 400px;
     height: 350px;
     border-radius: 5% 5% 5% 5%;
 }
-#imgSelecAlbum{
-    width: 300px;
-    height: 350px;  
-    border-radius: 5% 5% 5% 5%;
-}
-.section{
-    color:#ffffff;
-    background-color: rgb(57, 61, 94, 90%);
-    font-size: 40px;
-}
-#albumTitle{
-    font-size: 33px;
-}
 /*Sección artistas y albums*/
 
-/*Home*/
 
-body>
-#barraDerHome{
-    height: 100%;
-    width:20%;
-    position:fixed;
-    display: flex;
-    justify-content: flex-start;
-    background-color: rgb(133, 64, 202);
-    text-align: center;
+/* Inicio de sesion*/
 
-}
-
-#homePerfiles{
+#sideBarRegSesion{
+    padding:0px 0px 0px 0px;
     display:flex;
+    position:fixed;
+    height:100%;
+    width: 40%;
+    background-color: rgb(47, 2, 131);
+}
+#formIniSesion {
+    position:fixed;
+    display:flex;
+    align-items: center;
+    flex-direction: column; 
+    width:100%
+}
+#formUsuario{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-top: 15%;
+    position:fixed;
+    width: 50%;
+    height: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
+    border-radius:15% ;
+}
+#formRegUsuario{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-left: 55%;
+    margin-top: 10%;
+    position:fixed;
+    width: 30%;
+    height: 45%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    border-radius:15% ;
+}
+input::placeholder{
+    color:rgba(255, 255, 255, 0.524);
+    text-align:center
+
 }
 
-/*Generos-Home*/
-.verTodoG{
-    background-color: rgb(0,0,0,40%);
-    border-radius: 5% 5% 5% 5%;
-    font-size:small;
-    color: rgb(255, 255, 255);
-    padding: 15px 15px 15px 15px;
-    width: 90px;
-    height: 50px;
-    margin: 5px 0px 5px 10px;
-}
-#generos{
-    display: block;
+.inputSesion{
+    border-color: #ffffff00;
+    background-color: rgb(90, 51, 128);
+    width:80%;
+    height: 20%;
+    border-radius:30%;
+    display:flex;
+    align-items: center;
+    align-content: center;
 }
