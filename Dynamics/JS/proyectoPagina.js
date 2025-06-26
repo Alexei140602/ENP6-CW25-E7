@@ -136,7 +136,7 @@ botonArtistas.addEventListener("click", ()=>{
                 let albumTitle = document.createElement("h4");
                 //let secCanciones = document.createElement("p");
 
-                if(baseDatosJSON.album[i].artista === valor){
+                if(baseDatosJSON.album[i].artista.includes(valor)){
                   secImgArt.src=baseDatosJSON.album[i].url_img;
                   albumTitle.textContent=baseDatosJSON.album[i].nombre;
 
