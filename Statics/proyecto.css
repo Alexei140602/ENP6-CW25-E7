@@ -1,3 +1,188 @@
+
+.iconoOpcion{
+    height: 100%;
+    width: 11%;
+}
+.selector{
+    width: 100%;
+    background-color: #ffffff00;
+    color: #ffffff;
+    text-align: start;
+    margin-bottom: 7px;
+}
+label{
+    color: #ffffff;
+}
+
+.titulo{
+    color: #ffffff;
+    text-align: center;
+}
+
+#barraOpciones{ /*Volver a poner display:flex;*/
+    height: 100%;
+    width: 15%;
+    background-color: rgba(69, 69, 69, 0.474);
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    margin: 0px 20px 0px 0px !important;
+} 
+#barraNavegacion{ /*Volver a poner display:flex;*/
+    width: 50%;
+    background-color: rgba(69, 69, 69, 0.67);
+    position:sticky;
+    display: none;
+    margin: 0px 0px 0px 25% ;
+    justify-content: center;
+
+}
+#contenido{
+    width: 85%;
+
+    padding: 0px 0px 0px 15% ;
+    position:static;
+}
+
+ /*
+#desplegaBiblio{
+    display: none;
+}
+
+/*Sección artistas y albums*/
+.formatoObs{
+    background-color: rgb(0,0,0,40%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
+}
+body{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+}
+.imagenArtista{
+    width: 170px;
+    height: 170px;
+    border-radius: 5% 5% 5% 5%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.imagenArtista:hover{
+    width: 200px;
+    height: 200px;
+}
+.artistasMenu{
+    background-color: rgb(57, 61, 94, 80%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    padding: 15px 15px 15px 15px;
+    margin: 0px 0px 0px 15%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+#artistaSeleccionado{
+    background-color: rgb(0,0,0,70%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 10px 5px;
+    width: 400px;
+    height: 100%;
+}
+.artistasAlbums{
+    background-color: rgb(0,0,0,70%);
+    border-radius: 5% 5% 5% 5%;
+    border: none;
+    font-size: 19px;
+    color: rgb(255, 255, 255);
+    padding: 20px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
+    width: 200px;
+    height: 100%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.artistasAlbums:hover{
+    background-color: rgb(81,80,84,40%);
+    border: 2px solid rgb(255,255,255,85%);
+    font-size: 25px;
+    width: 230px;
+}
+#imgSelecArt{
+    width: 400px;
+    height: 350px;
+    border-radius: 5% 5% 5% 5%;
+}
+/*Sección artistas y albums*/
+
+
+/* Inicio de sesion*/
+
+#sideBarRegSesion{
+    padding:0px 0px 0px 0px;
+    display:flex;
+    position:fixed;
+    height:100%;
+    width: 40%;
+    background-color: rgb(47, 2, 131);
+}
+#formIniSesion {
+    position:fixed;
+    display:flex;
+    align-items: center;
+    flex-direction: column; 
+    width:100%
+}
+#formUsuario{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-top: 15%;
+    position:fixed;
+    width: 50%;
+    height: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius:15% ;
+}
+#formRegUsuario{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-left: 55%;
+    margin-top: 10%;
+    position:fixed;
+    width: 30%;
+    height: 45%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    border-radius:15% ;
+}
+input::placeholder{
+    color:rgba(255, 255, 255, 0.524);
+    text-align:center
+
+}
+
+.inputSesion{
+    border-color: #ffffff00;
+    background-color: rgb(90, 51, 128);
+    width:80%;
+    height: 20%;
+    border-radius:30%;
+    display:flex;
+    align-items: center;
+    align-content: center;
+}
+=======
 .formatoObs{
     background-color: rgb(0,0,0,53%);
     border-radius: 5% 5% 5% 5%;
