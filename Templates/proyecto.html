@@ -11,63 +11,138 @@
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        
+      }
+      #iniSesion{
+        display:unset;
       }
     </style>
     <script src="../Dynamics/JS/baseDeDatos.js"></script>
-    <link  rel="stylesheet" href="../Statics/juego.css">
-    <link rel="icon" href="../Statics/imagenes/SonoroJDF.png">
+    <link rel="stylesheet" href="../Statics/proyecto.css">
 </head>
 <body>
-    <!--Nombre de la página-->
-      <section id="sonoro">
-        Sonoro JDF ⚝⭒
-        <!--Barra de búsqueda-->
-        <input type="text" id="barraBusqueda" placeholder="Canción del día   ☆">
-      </section>
-    <!--Barra de opciones-->
+    
+    
+    <!--Barra de busqueda-->
     <aside id="barraOpciones">
         <div>
-            <h3 class="titulo">Explore</h3>
+            <h4 class="titulo">Explore</h4>
             <hr>
             <div id="home">
+                
                 <button class="selector" id="homebtn"><image class="iconoOpcion" id="homeImg" src="../Statics/imagenes/iconoHome.png"></image>  Home</button>
             </div>
         </div>
         <div id="bibliotecas">
-            <button class="selector" id="bibliotecasbtn"><image class="iconoOpcion" id="bibliotecasImg" src="../Statics/imagenes/iconoBiblioteca.png"></image>  Bibliotecas</button>
             
+            <button class="selector" id="bibliotecasbtn"><image class="iconoOpcion" id="bibliotecasImg" src="../Statics/imagenes/iconoBiblioteca.png"></image>  Bibliotecas</button>
+
             <div id="desplegaBiblio" >
-
                 <div id="artDest">
-                    <button class="selector" id="artDestbtn" style="display:none"><image class="iconoOpcion" id="ArtDestImg" src="../Statics/imagenes/iconoArtDest.png"></image>  Artistas Destacados</button>
+                
+                    <button class="selector" id="artDestbtn"><image class="iconoOpcion" id="ArtDestImg" src="../Statics/imagenes/iconoArtDest.png"></image>  Artistas Destacados</button>
                 </div>
-
                 <div id="generos">
-                    <button class="selector" id="generosbtn" style="display:none"><image class="iconoOpcion" id="generosImg" src="../Statics/imagenes/iconoGeneros.png"></image>  Géneros</button>
+                    
+                    <button class="selector" id="generosbtn"><image class="iconoOpcion" id="generosImg" src="../Statics/imagenes/iconoGeneros.png"></image>  Géneros</button>
                 </div>
-
                 <div id="albums">
-                    <button class="selector" id="albumsbtn" style="display:none"><image class="iconoOpcion" id="albumsImg" src="../Statics/imagenes/iconoAlbums.png"></image>  Albums</button>
+                
+                    <button class="selector" id="albumsbtn"><image class="iconoOpcion" id="albumsImg" src="../Statics/imagenes/iconoAlbums.png"></image>  Albums</button>
                 </div>
             </div>    
-        </div>
 
+        </div>
         <div id="listas">
+        
             <button class="selector" id="listasbtn"><image class="iconoOpcion" id="listasImg" src="../Statics/imagenes/iconoListas.png"></image>  Listas</button>
         </div>
-
+        <div id="reciente">
+            
+            <button class="selector" id="recientebtn"><image class="iconoOpcion" id="recienteImg" src="../Statics/imagenes/iconoRecientes.png"></image>  Reciente</button>
+        </div>
         <div id="tu">
+        
             <button class="selector" id="tubtn"><image class="iconoOpcion" id="tuImg" src="../Statics/imagenes/iconoTu.png"></image>  Tú</button>
         </div>
            
     </aside>
+        
+     <!--Vista Inicio de Sesion--
+    <div id="iniSesion" >
+        <form id="formIniSesion">
+            <h1 class="titulo">   SonoroJDF</h1>
+            <div id="formUsuario">
+                <br>
+                <label for="nomUsuario">Email o nombre del usuario</label>
+                <input type="text" name="nomUsuario" id="nomUsuario" class="inputSesion" placeholder=" Email o nombre de usuario">
+                <br>
+                <label for="contraseña">Contraseña</label>     
+                <input type="text" id="contraseña" name="contraseña " class="inputSesion" placeholder="    Ingrese su contraseña">
+                <br>
+                <input type="submit" id="subirUsuario">
+            </div>
+            
+        </form>
+    </div> -->
+
+     <!--Registro Sesion-->
+     <div id="regSesion" >
+        <form id="formRegSesion">
+            <aside id="sideBarRegSesion"> 
+                <div id="conteFoto">
+                    <input type="file" id="regImagenPerfil">= 
+                    <label for="imagenPerfil">Foto de Perfil (opcional)</label >
+                </div>
+                <div id="fotoP" ></div>
+            </aside> 
+            <br>
+            <div id="formRegUsuario">
+                <label for="nomUsuario">Email o nombre del usuario</label>
+                <input type="text" name="nomRegUsuario" id="nomRegUsuario" class="inputSesion" placeholder=" Email o nombre de usuario">
+                <br>
+                <label for="contraseña">Contraseña</label>     
+                <input type="text" id="regContraseña" name="regContraseña " class="inputSesion" placeholder="    Ingrese su contraseña">
+                <br>
+                <input type="submit" id="regUsuario" >
+            </div>
+            
+        </form>
+    </div> 
     
-    <!--Home-->
-      <!--Artistas y albums-->
-      <div id="artistas">
-      </div>
-      <div id="generosCont"></div>
-   
-</body>
+    <!--barra de navegacion-->
+    <nav id="barraNavegacion">
+        <h1>SonoroJDF</h1>
+        <form>
+            <input type="text" id="barraBusqueda" placeholder="¿Estás aburrido? :(">
+        </form>
+        <button id="btnUsuario" img="../Statics/imagenes/imgUsuario.jpg"></button>
+
+    </nav>--
+    <aside id="contenido">
+    
+    <!--Pagina de inicio-->
+    <section>
+        
+        
+    </section> 
+
+
+    <!--Cola de Reproducción-->
+    <div id="colaRep">
+        
+    </div>
+
+    <!--Géneros-->
+    <article>
+        
+    </article>
+
+    <!--Artistas y albums-->
+    <div id="artistas" style="display:none">
+    </div>
+    
     <script src="../Dynamics/JS/proyectoPagina.js"></script>
+    </aside>
+</body>
 </html>
