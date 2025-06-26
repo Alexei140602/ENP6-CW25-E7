@@ -1,3 +1,4 @@
+
 .iconoOpcion{
     height: 100%;
     width: 11%;
@@ -181,3 +182,279 @@ input::placeholder{
     align-items: center;
     align-content: center;
 }
+=======
+.formatoObs{
+    background-color: rgb(0,0,0,53%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
+}
+body{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    margin: 0px 0px 0px 0px;
+}
+.imagenArtista{
+    width: 170px;
+    height: 170px;
+    border-radius: 5% 5% 5% 5%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.imagenArtista:hover{
+    width: 190px;
+    height: 190px;
+}
+.imagenAlbum{
+    width: 170px;
+    height: 170px;
+    border-radius: 5% 5% 5% 5%;
+}
+.artistasMenu{
+    background-color: rgb(57, 61, 94, 60%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    padding: 15px 15px 15px 15px;
+    margin: 2% 0.5% 0px 16%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+#artistasMenuSec{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: left;
+    margin: 2%;
+}
+#sectionHome{
+    background-color: #393d5e   ;
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
+}
+#menuHome{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.artistHome{
+    background-color: #1d203e;
+    width: 27%;
+    height: 35%;
+    border-radius: 5% 5% 5% 5%;
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.artistHome:hover{
+    width: 28%;
+    height: 36%;
+}
+#imgHome{
+    width: 220px;
+    height: 200px;  
+    border-radius: 5% 5% 5% 5%;
+}
+#imgSelecAlbum{
+    width: 400px;
+    height: 350px;  
+    border-radius: 5% 5% 5% 5%;
+}
+#contenedors{
+    background-color: rgba(57, 61, 94, 0.844);
+    padding: 15px 15px 15px 15px;
+    margin: 18% 0.5% 0px 16%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+/*Barra de búsqueda*/
+.barraBusqueda{
+    background-color: rgba(34, 38, 63, 0.6);
+    color: rgb(255,255,255);
+    border-radius: 5% 5% 5% 5%;
+    font-size: small;
+    padding: 15px 15px 15px 15px;
+    margin: 1% 5% 0px 32%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: right;
+    width: 50%;
+    height: 5%;
+}
+/*Botones canciones barra búsqueda*/
+#botonMorado{
+    background-color: rgba(41, 47, 83, 0.6);
+    
+}
+
+@font-face {
+    font-family: 'Lost in South';
+    src: url('../Statics/Fonts/Lost\ in\ South.otf') format('truetype');
+}
+/*Nombre Pag*/
+#sonoro{
+    background-color: rgba(57, 61, 94, 0.93);
+    margin: 0px 0px 0px 0px !important;
+    padding: 8px 5px 7.8px 20px;
+    display: flex;
+    color:rgb(255, 255, 255);
+    flex-flow: row wrap;
+    justify-content: left;
+    
+    width: 100%;
+    height: 5%;
+}
+#sonoroT{
+    color:rgb(255, 255, 255);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    font-family: 'Lost in South', sans-serif;
+    
+    width: 10%;
+    height: 5%;
+}
+#artistaSeleccionado{
+    background-color: rgb(0,0,0,70%);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    margin: 5px 20px 5px 7%;
+    width: 400px;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+#albumSeleccionado{
+    background-color: rgba(0, 0, 0, 0.481);
+    border-radius: 5% 5% 5% 5%;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 15px;
+    margin: 5px 5px 10px 5px;
+    width: 350px;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.contSecAlbum{
+    height: 300px;
+}
+.artistasAlbums{
+    background-color: rgb(0,0,0,70%);
+    border-radius: 5% 5% 5% 5%;
+    border: none;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    padding: 20px 15px 15px 15px;
+    margin: 5px 5px 5px 5px;
+    width: 200px;
+    height: 100%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.artistasAlbums:hover{
+    background-color: rgb(81,80,84,40%);
+    border: 2px solid rgb(255,255,255,85%);
+    font-size: 19px;
+    width: 220px;
+}
+#artistaSelec{
+    font-size: 24px;
+    display: block;
+}
+#artistaInicio{
+    font-size: 24px;
+    background-color: rgba(57, 61, 94, 0.925);
+    display: block;
+}
+#imgSelecArt{
+    width: 400px;
+    height: 350px;
+    border-radius: 5% 5% 5% 5%;
+}
+
+.section{
+    color:#ffffff;
+    background-color: rgb(57, 61, 94, 90%);
+    font-size: 40px;
+}
+#albumTitle{
+    font-size: 33px;
+}
+
+/*Botones generales*/
+.generalT{
+    background-color: rgb(0,0,0,40%);
+    border-radius: 5% 5% 5% 5%;
+    font-size:10px;
+    color: rgb(255, 255, 255);
+    padding: 5px 5px 5px 5px;
+    width: 90px;
+    height: 70px;
+    margin: 2%;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.generalT:hover{
+    width: 200px;
+    height: 200px;
+    font-size: 15px;
+}
+
+/*Barra de opciones*/
+.iconoOpcion{
+    height: 100%;
+    width: 11%;
+}
+.selector{
+    width: 100%;
+    background-color: #ffffff00;
+    color: #ffffff;
+    text-align: start;
+    margin-bottom: 7px;
+}
+
+.titulo{
+    color: #ffffff;
+    text-align: center;
+}
+
+#barraOpciones{
+    height: 100%;
+    width: 15%;
+    background-color: rgba(69, 69, 69, 0.474);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin: 6.5% 20px 0px 0px !important;
+} 
+#barraNavegacion{
+    width: 50%;
+    background-color: rgba(69, 69, 69, 0.67);
+    position:sticky;
+    display: flex;
+    margin: 0px 0px 0px 25% ;
+    justify-content: center;
+}
+#contenido{
+    width: 85%;
+
+    padding: 0px 0px 0px 15% ;
+    position:static;
+}
+/*Barra de opciones*/
