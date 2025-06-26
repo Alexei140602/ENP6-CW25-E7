@@ -2,13 +2,26 @@ let botonArtistas = document.getElementById("artDestbtn");
 let botonGeneros = document.getElementById("generosbtn");
 let botonAlbums = document.getElementById("albumsbtn");
 let botonHome = document.getElementById("homebtn");
+let botonBiblioteca = document.getElementById("bibliotecasbtn");
 
 const espacio = document.createElement("hr");
 
+let contenedorGeneral = document.getElementById("artistas");
 function limpiar(){
   let contenedorGeneral = document.getElementById("artistas");
   contenedorGeneral.innerHTML="";
 }
+botonBiblioteca.addEventListener("click",()=>{
+  //Boton artistas
+  oculto=botonArtistas.style.display==="none";
+  botonArtistas.style.display=oculto? "block":"none";
+  //Boton generos
+  oculto=botonGeneros.style.display==="none";
+  botonGeneros.style.display=oculto? "block":"none";
+  //Boton albums
+  oculto=botonAlbums.style.display==="none";
+  botonAlbums.style.display=oculto? "block":"none";
+});
 
 botonArtistas.addEventListener("click", ()=>{
   botonArtistas.style.backgroundColor="rgb(0, 0, 0, 90%)";
@@ -169,9 +182,8 @@ botonArtistas.addEventListener("click", ()=>{
 
 botonGeneros.addEventListener("click", ()=>{
   botonGeneros.style.backgroundColor="rgb(0, 0, 0, 90%)";
-  //Despliega los artistas
-    let contenedorGenero = document.getElementById("artistas");
-    contenedorGenero.innerHTML="";
+  //Limpia
+    limpiar();
 
     //Despliega la sección de géneros disponibles
     for (let i=0; i<baseDatosJSON.genero.length; i++){
@@ -182,13 +194,14 @@ botonGeneros.addEventListener("click", ()=>{
       generoNom.textContent=baseDatosJSON.genero[i].nombre;
       descGenero.textContent=baseDatosJSON.genero[i].descripcion;
 
-      contenedorGenero.classList.add("artistasMenu");
+      contenedorGeneral.classList.add("artistasMenu");
       botonGenero.classList.add("generalT");
 
       botonGenero.appendChild(generoNom);
       
-      contenedorGenero.appendChild(botonGenero);
+      contenedorGeneral.appendChild(botonGenero);
 
+      //Descripción del género
       botonGenero.addEventListener("mouseover", ()=>{
         botonGenero.style.backgroundColor="rgb(0,0,0,80%)";
         botonGenero.appendChild(descGenero);
@@ -197,6 +210,107 @@ botonGeneros.addEventListener("click", ()=>{
         botonGenero.style.backgroundColor="rgb(0,0,0,40%)";
         botonGenero.innerHTML="";
         botonGenero.appendChild(generoNom);
+      });
+
+      //Al dar click, albums clasificados
+      botonGenero.addEventListener("click", ()=>{
+        let contenedor = document.getElementById("generosCont");
+        contenedor.innerHTML="";
+
+        for(let i=0; i<baseDatosJSON.canciones.length; i++){
+          let contAlbum = document.createElement("button");
+          let nombreArtista = document.createElement("h4");
+          let imgAlbum = document.createElement("img");
+          let nombreAlbum = document.createElement("h4");
+          let descAlb = document.createElement("h4");
+
+          if(baseDatosJSON.canciones[i].genero === generoNom.textContent){
+            //Obtener el nombre del album al que pertenecen las canciones
+            let nombreA=baseDatosJSON.canciones[i].album;
+
+            let n=0;
+            for(let k=0; k<i;k++){
+              if(baseDatosJSON.canciones[k].album === nombreA
+              && baseDatosJSON.canciones[k].genero === generoNom.textContent){
+                n++;
+              }
+            }
+            
+            if(n === 0){
+              for(let j=0; j<baseDatosJSON.album.length; j++){
+                if(nombreA === baseDatosJSON.album[j].nombre){
+                  nombreArtista.textContent=baseDatosJSON.album[j].artista;
+                  imgAlbum.src=baseDatosJSON.album[j].url_img;
+                  nombreAlbum.textContent=baseDatosJSON.album[j].nombre;
+                  descAlb.textContent=baseDatosJSON.album[j].descripcion;
+
+                  //contenedor.classList.add("fondoObs");
+                  imgAlbum.classList.add("imagenAlbum");
+                  contAlbum.classList.add("artistasAlbums");
+
+                  contAlbum.appendChild(nombreArtista);
+                  contAlbum.appendChild(imgAlbum);
+                  contAlbum.appendChild(nombreAlbum);
+                  contenedor.appendChild(contAlbum);
+                  contenedorGeneral.appendChild(contenedor);
+                }
+              }
+              contAlbum.addEventListener("click", ()=>{
+                //Variables
+                limpiar();
+
+                let artistaRecuadro = document.createElement("div");
+                let artistaDescripcion = document.createElement("h7");
+                let imagenArtista = document.createElement("img");
+                let nombreArtista = document.createElement("h4");
+                let albumTitlee = document.createElement("p");
+
+                //Despliega canciones
+                console.log(nombreAlbum.textContent);
+                for(let i=0; i<baseDatosJSON.album.length; i++){
+                  if(baseDatosJSON.album[i].nombre === nombreAlbum.textContent){
+                    imagenArtista.src=baseDatosJSON.album[i].url_img;
+                    artistaDescripcion.textContent=baseDatosJSON.album[i].descripcion;
+                    nombreArtista.textContent=baseDatosJSON.album[i].artista;
+                    albumTitlee.textContent=baseDatosJSON.album[i].nombre;
+
+                    contenedorGeneral.classList.add("artistasMenu");
+                    nombreArtista.id="artistaSelec";
+                    artistaRecuadro.id="albumSeleccionado";
+                    imagenArtista.id="imgSelecAlbum";
+                    albumTitlee.id="albumTitle";
+
+                    artistaRecuadro.appendChild(nombreArtista);
+                    artistaRecuadro.appendChild(imagenArtista);
+                    artistaRecuadro.appendChild(albumTitlee);
+                    artistaRecuadro.appendChild(artistaDescripcion);
+
+                    contenedorGeneral.appendChild(artistaRecuadro);
+                    contenedorGeneral.appendChild(espacio);
+
+                    //Comienza a crear el cont. de canciones del album
+                    let contenedorCanciones = document.createElement("div");
+                    let cancionesGeneral = document.createElement("ol");
+                    for(let i=0; i<baseDatosJSON.canciones.length; i++){
+                      let cancionesLista = document.createElement("li");
+
+                      if(baseDatosJSON.canciones[i].album === nombreAlbum.textContent && 
+                        baseDatosJSON.canciones[i].artista === nombreArtista.textContent){
+                          cancionesLista.textContent=baseDatosJSON.canciones[i].nombre;
+
+                          contenedorCanciones.id="artistaSeleccionado";
+
+                          cancionesGeneral.appendChild(cancionesLista);
+                          contenedorCanciones.appendChild(cancionesGeneral);
+                          contenedorGeneral.appendChild(contenedorCanciones);
+                      }
+                    }
+                  }
+                }
+              });
+            }
+          }
+        }
       });
     }
 });
@@ -214,7 +328,6 @@ botonAlbums.addEventListener("click", ()=>{
     let nombreAlbum = document.createElement("h4");
     let descAlb = document.createElement("h4");
 
-    console.log("No funciona?");
     nombreArtista.textContent=baseDatosJSON.album[i].artista;
     imgAlbum.src=baseDatosJSON.album[i].url_img;
     nombreAlbum.textContent=baseDatosJSON.album[i].nombre;
@@ -228,11 +341,66 @@ botonAlbums.addEventListener("click", ()=>{
     contAlbum.appendChild(imgAlbum);
     contAlbum.appendChild(nombreAlbum);
     contenedorAlbums.appendChild(contAlbum);
+
+    contAlbum.addEventListener("click", ()=>{
+      //Variables
+      limpiar();
+
+      let artistaRecuadro = document.createElement("div");
+      let artistaDescripcion = document.createElement("h7");
+      let imagenArtista = document.createElement("img");
+      let nombreArtista = document.createElement("h4");
+      let albumTitlee = document.createElement("p");
+
+      //Despliega canciones
+      console.log(nombreAlbum.textContent);
+      for(let i=0; i<baseDatosJSON.album.length; i++){
+        if(baseDatosJSON.album[i].nombre === nombreAlbum.textContent){
+          imagenArtista.src=baseDatosJSON.album[i].url_img;
+          artistaDescripcion.textContent=baseDatosJSON.album[i].descripcion;
+          nombreArtista.textContent=baseDatosJSON.album[i].artista;
+          albumTitlee.textContent=baseDatosJSON.album[i].nombre;
+
+          contenedorGeneral.classList.add("artistasMenu");
+          nombreArtista.id="artistaSelec";
+          artistaRecuadro.id="albumSeleccionado";
+          imagenArtista.id="imgSelecAlbum";
+          albumTitlee.id="albumTitle";
+
+          artistaRecuadro.appendChild(nombreArtista);
+          artistaRecuadro.appendChild(imagenArtista);
+          artistaRecuadro.appendChild(albumTitlee);
+          artistaRecuadro.appendChild(artistaDescripcion);
+
+          contenedorGeneral.appendChild(artistaRecuadro);
+          contenedorGeneral.appendChild(espacio);
+
+          //Comienza a crear el cont. de canciones del album
+          let contenedorCanciones = document.createElement("div");
+          let cancionesGeneral = document.createElement("ol");
+          for(let i=0; i<baseDatosJSON.canciones.length; i++){
+            let cancionesLista = document.createElement("li");
+
+            if(baseDatosJSON.canciones[i].album === nombreAlbum.textContent && 
+              baseDatosJSON.canciones[i].artista === nombreArtista.textContent){
+                cancionesLista.textContent=baseDatosJSON.canciones[i].nombre;
+
+                contenedorCanciones.id="artistaSeleccionado";
+
+                cancionesGeneral.appendChild(cancionesLista);
+                contenedorCanciones.appendChild(cancionesGeneral);
+                contenedorGeneral.appendChild(contenedorCanciones);
+              
+            }
+          }
+        }
+      }
+    });
   }
 });
 
 botonHome.addEventListener("click", ()=>{
   botonHome.style.backgroundColor="rgb(0, 0, 0, 90%)";
-  //Despliega los artistas
+  //Limpia
     limpiar();
 });
