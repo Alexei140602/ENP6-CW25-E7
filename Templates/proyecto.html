@@ -65,7 +65,16 @@
         
             <button class="selector" id="tubtn"><image class="iconoOpcion" id="tuImg" src="../Statics/imagenes/iconoTu.png"></image>  Tú</button>
         </div>
-           
+        <div id="contReproductor">
+            <div id="player"></div>
+                <label for="volumeSlider">Volumen:</label>
+                <button type="text" id="muteBtn"></button> 
+                <input type="range" max="100"  id="volumeSlider">
+                <label for="seekBar">Duracion:</label>
+                <input type="range" min="0" max="100" value="0" id="seekBar"><br>
+                <button id="playPausebtn">⏸</button> 
+        </div>
+         
     </aside>
         
      <!--Vista Inicio de Sesion--
