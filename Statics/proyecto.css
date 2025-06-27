@@ -1,7 +1,9 @@
-
 .iconoOpcion{
     height: 100%;
     width: 11%;
+}
+.blanco{
+    color: #ffffff;
 }
 .selector{
     width: 100%;
@@ -12,6 +14,10 @@
 }
 label{
     color: #ffffff;
+}
+.cambiobtn{
+    color: #6083cd;
+    margin: 0;
 }
 
 .titulo{
@@ -24,15 +30,15 @@ label{
     width: 15%;
     background-color: rgba(69, 69, 69, 0.474);
     position: fixed;
-    display: none;
+    display: flex;
     flex-direction: column;
-    margin: 0px 20px 0px 0px !important;
+    margin: 6.5% 20px 0px 0px !important;
 } 
 #barraNavegacion{ /*Volver a poner display:flex;*/
     width: 50%;
     background-color: rgba(69, 69, 69, 0.67);
     position:sticky;
-    display: none;
+    display: flex;
     margin: 0px 0px 0px 25% ;
     justify-content: center;
 
@@ -43,95 +49,11 @@ label{
     padding: 0px 0px 0px 15% ;
     position:static;
 }
+/*Barra de opciones*/
 
- /*
-#desplegaBiblio{
+/* Inicio de sesion/Registro de Usuario*/
+#formRegSesion{
     display: none;
-}
-
-/*Sección artistas y albums*/
-.formatoObs{
-    background-color: rgb(0,0,0,40%);
-    border-radius: 5% 5% 5% 5%;
-    font-size: medium;
-    color: rgb(255, 255, 255);
-    padding: 15px 15px 15px 15px;
-    margin: 5px 5px 5px 5px;
-}
-body{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: left;
-}
-.imagenArtista{
-    width: 170px;
-    height: 170px;
-    border-radius: 5% 5% 5% 5%;
-    transition-duration: 0.4s;
-    cursor:pointer;
-}
-.imagenArtista:hover{
-    width: 200px;
-    height: 200px;
-}
-.artistasMenu{
-    background-color: rgb(57, 61, 94, 80%);
-    border-radius: 5% 5% 5% 5%;
-    font-size: medium;
-    padding: 15px 15px 15px 15px;
-    margin: 0px 0px 0px 15%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-#artistaSeleccionado{
-    background-color: rgb(0,0,0,70%);
-    border-radius: 5% 5% 5% 5%;
-    font-size: medium;
-    color: rgb(255, 255, 255);
-    padding: 15px 15px 15px 15px;
-    margin: 5px 5px 10px 5px;
-    width: 400px;
-    height: 100%;
-}
-.artistasAlbums{
-    background-color: rgb(0,0,0,70%);
-    border-radius: 5% 5% 5% 5%;
-    border: none;
-    font-size: 19px;
-    color: rgb(255, 255, 255);
-    padding: 20px 15px 15px 15px;
-    margin: 5px 5px 5px 5px;
-    width: 200px;
-    height: 100%;
-    transition-duration: 0.4s;
-    cursor:pointer;
-}
-.artistasAlbums:hover{
-    background-color: rgb(81,80,84,40%);
-    border: 2px solid rgb(255,255,255,85%);
-    font-size: 25px;
-    width: 230px;
-}
-#imgSelecArt{
-    width: 400px;
-    height: 350px;
-    border-radius: 5% 5% 5% 5%;
-}
-/*Sección artistas y albums*/
-
-
-/* Inicio de sesion*/
-
-#sideBarRegSesion{
-    padding:0px 0px 0px 0px;
-    display:flex;
-    position:fixed;
-    height:100%;
-    width: 40%;
-    background-color: rgb(47, 2, 131);
 }
 #formIniSesion {
     position:fixed;
@@ -140,6 +62,15 @@ body{
     flex-direction: column; 
     width:100%
 }
+#sideBarRegSesion{
+    padding:0px 0px 0px 0px;
+    display:flex;
+    position:fixed;
+    height:100%;
+    width: 40%;
+    background-color: rgb(47, 2, 131);
+}
+
 #formUsuario{
     background-color: rgba(0, 0, 0, 0.555);
     margin-top: 15%;
@@ -166,6 +97,7 @@ body{
     
     border-radius:15% ;
 }
+
 input::placeholder{
     color:rgba(255, 255, 255, 0.524);
     text-align:center
@@ -182,7 +114,8 @@ input::placeholder{
     align-items: center;
     align-content: center;
 }
-=======
+
+/* Artistas*/
 .formatoObs{
     background-color: rgb(0,0,0,53%);
     border-radius: 5% 5% 5% 5%;
@@ -218,7 +151,7 @@ body{
     border-radius: 5% 5% 5% 5%;
     font-size: medium;
     padding: 15px 15px 15px 15px;
-    margin: 2% 0.5% 0px 16%;
+    margin: 7.5% 0.5% 0px 16%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -231,7 +164,7 @@ body{
     justify-content: left;
     margin: 2%;
 }
-#sectionHome{
+.sectionHome{
     background-color: #393d5e   ;
     border-radius: 5% 5% 5% 5%;
     font-size: medium;
@@ -297,10 +230,23 @@ body{
     background-color: rgba(41, 47, 83, 0.6);
     
 }
+.barraBusquedaCont{
+    background-color: rgba(34, 38, 63, 0.871);
+    color: rgb(255,255,255);
+    border-radius: 5% 5% 5% 5%;
+    font-size: small;
+    padding: 15px 15px 15px 15px;
+    margin: 1% 5% 0px 32%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: right;
+    width: 50%;
+    height: 5%;
+}
 
 @font-face {
     font-family: 'Lost in South';
-    src: url('../Statics/Fonts/Lost\ in\ South.otf') format('truetype');
+    src: url('../Statics/Fonts/Lost\ in\ South.ttf') format('truetype');
 }
 /*Nombre Pag*/
 #sonoro{
@@ -309,11 +255,12 @@ body{
     padding: 8px 5px 7.8px 20px;
     display: flex;
     color:rgb(255, 255, 255);
-    flex-flow: row wrap;
+    flex-direction: row;
+    position: fixed;
     justify-content: left;
     
     width: 100%;
-    height: 5%;
+    height: 11%;
 }
 #sonoroT{
     color:rgb(255, 255, 255);
@@ -415,75 +362,36 @@ body{
     height: 200px;
     font-size: 15px;
 }
+/*Botones generales*/
 
-/*Barra de opciones*/
-.iconoOpcion{
-    height: 100%;
-    width: 11%;
-}
-.selector{
-    width: 100%;
-    background-color: #ffffff00;
-    color: #ffffff;
-    text-align: start;
-    margin-bottom: 7px;
-}
 
-.titulo{
-    color: #ffffff;
-    text-align: center;
-}
+/*Listas*/
 
-#barraOpciones{
-    height: 100%;
-    width: 15%;
-    background-color: rgba(69, 69, 69, 0.474);
-    position: fixed;
-    display: flex;
+#creadorListas{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-left: 15%;
+    margin-top: 8%;
+    position:block;
+    width: 30%;
+    height: 45%;
+    display:none;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
-    margin: 6.5% 20px 0px 0px !important;
-} 
-#barraNavegacion{
-    width: 50%;
-    background-color: rgba(69, 69, 69, 0.67);
-    position:sticky;
-    display: flex;
-    margin: 0px 0px 0px 25% ;
-    justify-content: center;
+    
+    border-radius:15% ;
 }
-#contenido{
-    width: 85%;
-
-    padding: 0px 0px 0px 15% ;
-    position:static;
+#contenedorListas{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-left: 15%;
+    margin-top: 8%;
+    position:block;
+    width: 30%;
+    height: 45%;
+    display:none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    border-radius:15% ;
 }
-
-
-
-#contReproductor{
-    background-color: rgb(0,0,0,70%);
-    border-radius: 5% 5% 5% 5%;
-    border: none;
-    font-size: 19px;
-    color: rgb(255, 255, 255);
-    padding: 15px 15px 15px 15px;
-    margin: 5px 5px 5px 5px;
-    width: 200px;
-    height: 100%;
-    transition-duration: 0.4s;
-    cursor:pointer;
-}
-#player{
-    margin: 5px 5px 5px 5px;
-    width: 100%;
-    height: 50%;
-}
-#playPausebtn{
-background-color: rgb(131, 17, 131);
-    border-radius: 5% 5% 5% 5%;   
-}
-#muteBtn{
-background-color: rgb(131, 17, 131);
-    border-radius: 5% 5% 5% 5%;   
-}
-/*Barra de opciones*/
