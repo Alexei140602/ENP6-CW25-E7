@@ -12,9 +12,6 @@ const nomIniUsuario = document.getElementById("nomIniUsuario");
 const cambiaReg = document.getElementById("cambiaReg")
 const cambiaIni = document.getElementById("cambiaIni")
 
-//Cookie para canciones
-const nomCancion = document.querySelectorAll("button");
-
 function iniCambReg (eleccion) //Funcion que cambia de inicio de sesion a registro de usuarios y viceversa
 {
   if(eleccion == 1)
@@ -97,15 +94,11 @@ regForm.addEventListener("submit", (e)=>{ //Evento que se ejecuta al
     console.log(usuario);
     let valorCookie=encodeURIComponent(JSON.stringify(usuario));
     let duracion = 1080*10;
-    let cancion = baseDatosJSON.canciones
     console.log(usuario.nombre);
     console.log(valorCookie);
     document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
     console.log(`${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`);
     document.cookie = `activo=${valorCookie.trim()}; max-age=${duracion}`;
-
-    document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
-
     cambioP(2,regForm);
     cambioP(1,nombrePag);
     cambioP(1,contenedorGeneral);
@@ -163,24 +156,39 @@ formIniSesion.addEventListener("submit", (e)=>{
         encontrados = 1;
       }
     }
-    cambioP(2,formIniSesion);
-    cambioP(1,nombrePag);
-    cambioP(1,contenedorGeneral);
-    cambioP(1,barraOpc);
+    
   }
   console.log(encontrados);
   if(encontrados == 1)
   { 
     datos = JSON.parse(datos);
     console.log(datos);
-    if(datos.nombre === nomIni && datos.password === iniContr)
+    if(datos.nombre === nomIni )
     {
-      document.cookie = `Activo=${valorAct}"`;
-      console.log("Iniciando Sesion");
-      formIniSesion.style.display = "none";
+      if(datos.password === iniContr)
+      {
+        document.cookie = `Activo=${valorAct}"`;
+        console.log("Iniciando Sesion");
+        formIniSesion.style.display = "none";
+        cambioP(2,formIniSesion);
+        cambioP(1,nombrePag);
+        cambioP(1,contenedorGeneral);
+        cambioP(1,barraOpc);
+      }
+      else
+      {
+        iniContraseña.placeholder = "La contraseña no es correcta";
+        iniContraseña.value="";
+      }
     }
-
+    
   }
+  else
+  {
+    nomIniUsuario.placeholder="El usuario no existe";
+    nomIniUsuario.value="";
+  }
+
 });
 
 
@@ -199,10 +207,15 @@ const espacio = document.createElement("hr");
 let contenedorGeneral = document.getElementById("artistas");
 let barraOpc = document.getElementById("barraOpciones");
 let nombrePag = document.getElementById("sonoro");
+let contenedorListas = document.getElementById("contenedorListas");
+
 
 function limpiar(){
   let contenedorGeneral = document.getElementById("artistas");
   contenedorGeneral.innerHTML="";
+  contenedorListas.style.display = "none";
+  contenedorGeneral.style.display ="block";
+  creadorListas.style.display = "none";
 }
 inputBusc.addEventListener("focus", ()=>{
   if(inputBusc === document.activeElement){
@@ -210,7 +223,7 @@ inputBusc.addEventListener("focus", ()=>{
       let valor = inputBusc.value.trim();
 
       resultados.innerHTML="";
-    
+      
       if(valor != ""){
         let cont=0;
         resultados.style.display= "flex";
@@ -219,7 +232,6 @@ inputBusc.addEventListener("focus", ()=>{
         //Busca en canciones
         for(let i=0; i<baseDatosJSON.canciones.length; i++){
           let cancion = baseDatosJSON.canciones[i].nombre;
-          
           if(cancion.toUpperCase().includes(valor.toUpperCase())){
             let busquedas = document.createElement("button");
             busquedas.textContent=(cancion + "ㅤ☆");
@@ -476,6 +488,7 @@ botonGeneros.addEventListener("click", ()=>{
 
       //Al dar click, albums clasificados
       botonGenero.addEventListener("click", ()=>{
+        limpiar();
         let contenedor = document.getElementById("generosCont");
         contenedor.innerHTML="";
 
@@ -579,6 +592,7 @@ botonGeneros.addEventListener("click", ()=>{
 });
 
 botonAlbums.addEventListener("click", ()=>{
+  limpiar();
   botonAlbums.style.backgroundColor="rgb(0, 0, 0, 90%)";
   //Despliega los albums en general
     let contenedorAlbums = document.getElementById("artistas");
@@ -664,99 +678,8 @@ botonAlbums.addEventListener("click", ()=>{
 
 botonHome.addEventListener("click", ()=>{
   botonHome.style.backgroundColor="rgb(0, 0, 0, 90%)";
-
-  limpiar();
-  //Despliega 3 artistas
-  const contenido=["¿Volver a escuchar?","Tus artistas fav.",
-    "Géneros preferidos","Recomendados 𖤐"];
-  const valorCookie=[1,8,10];
-  const valorCookieG=[1,3,5];
-    
-  for (let j=0; j<contenido.length; j++){
-    let homeGeneral = document.createElement("div");
-    let volverEscuchar = document.createElement("h4");
-    let volvHome = document.createElement("div"); //Display block
-    //Volver a escuchar
-    if(j==0){
-
-    }
-    //Artistas
-    if(j===1){
-      for(let k=0; k<3; k++){
-        
-        let menuHome = document.createElement("div");
-        let artistHome = document.createElement("div");
-        let nombreArtista = document.createElement("h4");
-        let imgHome = document.createElement("img");
-
-        console.log(valorCookie[k] + "valor k");
-        for(let i=0; i<baseDatosJSON.artistas.length; i++){
-          console.log(baseDatosJSON.artistas[i].id + "el id es");
-          if(baseDatosJSON.artistas[i].id === valorCookie[k]){
-            volvHome.classList.add("sectionHome");
-            volvHome.style.display="block";
-            imgHome.id="imgHome";
-            artistHome.classList.add("artistHome");
-
-            //Sección
-            volverEscuchar.textContent=contenido[j];
-            artistHome.classList.add("artistHome");
-            nombreArtista.textContent=baseDatosJSON.artistas[i].nombre;
-            imgHome.src=baseDatosJSON.artistas[i].url_img;
-
-            volvHome.appendChild(volverEscuchar);
-            volvHome.appendChild(menuHome);
-            artistHome.appendChild(nombreArtista);
-            artistHome.appendChild(imgHome);
-            volvHome.appendChild(artistHome);
-            homeGeneral.appendChild(volvHome);
-            contenedorGeneral.appendChild(homeGeneral);
-          }
-        }
-      }
-    }
-    //Géneros
-    if(j==2){
-      for(let k=0; k<3; k++){
-        
-        let menuHome = document.createElement("div");
-        let artistHome = document.createElement("div");
-        let nombreArtista = document.createElement("h4");
-
-        console.log(valorCookieG[k] + "valor k");
-        for(let i=0; i<baseDatosJSON.genero.length; i++){
-          console.log(baseDatosJSON.genero[i].id + "el id es");
-          if(baseDatosJSON.genero[i].id === valorCookieG[k]){
-            volvHome.classList.add("sectionHome");
-            volvHome.style.display="block";
-            artistHome.classList.add("generalT");
-
-            //Sección
-            volverEscuchar.textContent=contenido[j];
-            artistHome.classList.add("artistHome");
-            nombreArtista.textContent=baseDatosJSON.genero[i].nombre;
-
-            volvHome.appendChild(volverEscuchar);
-            volvHome.appendChild(menuHome);
-            artistHome.appendChild(nombreArtista);
-            volvHome.appendChild(artistHome);
-            homeGeneral.appendChild(volvHome);
-            contenedorGeneral.appendChild(homeGeneral);
-          }
-        }
-      }
-    }
-    //Recomendación
-    if(j==3){
-
-    }
-  }
-
-  //oculto=volvHome.style.display==="none";
-  //volvHome.style.display=oculto? "block":"none";
-
   //Despliega los artistas
-    
+    limpiar();
 });
 
 //Seccion de artitas id
@@ -768,151 +691,124 @@ function cambioP (opc,seccion){
   else{
     seccion.style.display = "none";
   }
+  return;
 }
-//funcion para seleccionar la cancion
-//let linkCancion="nR5l-1lmkkI";
-/*
-selCancion.addEventListener('click',(e)=>{
-selCancion=e.target.textContent;
-  for (let i=0; i<baseDatosJSON.canciones.length; i++){
-    if(baseDatosJSON.canciones[i].nombre === selCancion.textContent)
-      linkCancion=baseDatosJSON.canciones[i].link;
-  }
-});*/
-// Asignar este código cuando creas cada botón de canción:
-/*
-botonCancion.addEventListener("click", (e) => {
-  const nombreCancion = e.target.textContent.trim(); // Obtener el texto
-  for (let i = 0; i < baseDatosJSON.canciones.length; i++) {
-    if (baseDatosJSON.canciones[i].nombre === nombreCancion) {
-      linkCancion = baseDatosJSON.canciones[i].link;
 
-      // Si el reproductor ya está listo, carga el nuevo video
-      if (player && typeof player.loadVideoById === "function") {
-        player.loadVideoById(linkCancion);
-      } else {
-        // Si aún no se ha creado el reproductor, se creará con ese link
-        onYouTubeIframeAPIReady();
+//Listas y Cola de reproducción
+
+function muestraListas()
+{
+  let cookies = document.cookie.split("; ");
+  cookies= document.cookie.split("; ");
+  mList.innerHTML = "";
+  
+  console.log(mList.innerHTML);
+  
+  for(let cookie of cookies)
+    {
+      let [nombre,valor] = cookie.split('=');
+
+      
+      if (nombre.includes("lista"))
+      { 
+        valor = decodeURIComponent(valor);
+        valor = valor.split(",");
+        mList.innerHTML += `<br> <label>${nombre.slice(5)}:</label>`
+        for(a=0;a<valor.length-1;a++)
+          for(let i=0; i<baseDatosJSON.canciones.length; i++)
+          {
+            if(baseDatosJSON.canciones[i].id == valor[a])
+              mList.innerHTML +=  `<label>${baseDatosJSON.canciones[i].nombre}</label> <br>`;
+          }
+        mList.innerHTML += "<br>"
       }
-      break;
     }
+
+  
+}
+let mList = document.getElementById("mList");
+let muestraList = document.getElementById("muestraList");
+const listabtn = document.getElementById("listasbtn");
+const creaListabtn = document.getElementById("crearLista");
+let creadorListas = document.getElementById("creadorListas");
+let buscaCancion = document.getElementById("buscaCancion");
+let salirbtn = document.getElementById("salirCreaLista");
+let guardarbtn = document.getElementById("guardarLista");
+let inputNomList = document.getElementById("nombreLista");
+let listaActual = document.getElementById("listaActual");
+let lista="" ;
+let nombreLista="";
+//Boton para entrar a la seccion para ver las listas
+listabtn.addEventListener("click", ()=>{
+  limpiar();
+  contenedorGeneral.style.display = "none";
+  contenedorListas.style.display="flex";
+  muestraListas();
+});
+
+//Boton para ver entrar al creador de listas
+creaListabtn.addEventListener("click", ()=>{
+  limpiar();
+  creadorListas.style.display = "block";
+  contenedorGeneral.style.display = "none";
+
+  console.log("Creando Lista");
+  buscaCancion.innerHTML = ""
+  for(let i=0; i<baseDatosJSON.canciones.length; i++){
+    buscaCancion.innerHTML += `<option value=${baseDatosJSON.canciones[i].id}>${baseDatosJSON.canciones[i].nombre}</option>`
   }
 });
-ESTO NO*/
-//video
-let player;
-let duration = 0;
-let lastVolume = 100;
-let previousVolume;
-let updateInterval;
-
-const seekBar = document.getElementById("seekBar");
-const volumeSlider = document.getElementById("volumeSlider");
-const playPauseBtn = document.getElementById("playPausebtn");
-const muteBtn = document.getElementById("muteBtn");
-
-const vidDuration = document.getElementById("duration");
-const currentTimeSpan = document.getElementById("currentTime");
-let currentVolume
-
-function onPlayerReady(event) {
-    duration = player.getDuration();
-    player.mute(); // empieza en mute para evitar bloqueo de autoplay
-    player.playVideo();
-
-    previousVolume = player.getVolume();
-    volumeSlider.value = previousVolume;
-    seekBar.max = duration;
-
-    updateInterval = setInterval(() => {
-        if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
-            seekBar.value = player.getCurrentTime();
-        }
-
-        // Detecta cambio externo de volumen y actualiza el slider
-        currentVolume = player.getVolume();
-        if (currentVolume !== previousVolume) {
-            volumeSlider.value = currentVolume;
-            previousVolume = currentVolume;
-        }
-
-        // Actualiza ícono del botón mute según estado
-        if (player.isMuted()) {
-            muteBtn.textContent = "🔇";
-        } else {
-            muteBtn.textContent = "🔊";
-        }
-    }, 1000);
-}
-
-function onPlayerStateChange(event){
-    if (event.data == YT.PlayerState.PLAYING) {
-        playPauseBtn.textContent = "⏸";
-    } 
-    else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-        playPauseBtn.textContent = "▶";
-    }
-    if (event.data === YT.PlayerState.ENDED) {
-        clearInterval(updateInterval);
-    }
-}
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player("player", {
-        videoId: linkCancion,
-        playerVars: {
-            controls: 0,
-            modestbranding: 1,
-            rel: 0,
-            showinfo: 0,
-        },
-        events: {
-            onReady: onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        },
-    });
-}
-
-
-// ▶️⏸️ Play/Pause
-playPauseBtn.addEventListener("click", () => {
-    let state = player.getPlayerState();
-    if (state === YT.PlayerState.PLAYING) {
-        player.pauseVideo();
-        playPauseBtn.textContent = "▶️";
-    } else {
-        player.playVideo();
-        playPauseBtn.textContent = "⏸️";
+//Permite seleccionar canciones a las cuales se creara una lista
+buscaCancion.addEventListener("input", ()=>{
+  lista += buscaCancion.value + ",";
+  console.log(buscaCancion.value );
+  console.log(lista);
+  let listaAct = lista.split(',');
+  listaActual.innerHTML="";
+  console.log(listaAct.length-1);
+  for(a=0;a<listaAct.length-1;a++)
+    for(let i=0; i<baseDatosJSON.canciones.length; i++)
+    {
+      if(baseDatosJSON.canciones[i].id == listaAct[a])
+        listaActual.innerHTML +=  `<label>${baseDatosJSON.canciones[i].nombre}</label> <br>`
     }
 });
 
-// 🔊 Control de volumen con slider
-volumeSlider.addEventListener("input", () => {
-    const volume = parseInt(volumeSlider.value, 10);
-    player.setVolume(volume);
+inputNomList.addEventListener("input", ()=>{
+  nombreLista = inputNomList.value;
+  console.log(inputNomList.value );
+  console.log(nombreLista);
+});
+//Las lista creada se guarda en cookies
+guardarbtn.addEventListener("click", ()=>{
+  if(nombreLista != "" && lista!="")
+  {
+    lista=encodeURIComponent(JSON.stringify(lista));
+    document.cookie = `lista${nombreLista}=${lista}; max.age=2000`;
 
-    // Si estaba muteado y se mueve el slider, se desmutea
-    if (player.isMuted() && volume > 0) {
-        player.unMute();
-    }
-
-    lastVolume = volume;
-    previousVolume = volume;
+    nombreLista ="";
+    inputNomList.value = "";
+    lista = ""; 
+    buscaCancion.value = "";
+  }
+  else
+  {
+    inputNomList.placeholder ="Falta nombre";
+  }
+  listaActual.innerHTML="";
 });
 
-// 🔇 Mute/Unmute con botón
-muteBtn.addEventListener("click", () => {
-    if (player.isMuted()) {
-        player.unMute();
-        volumeSlider.value = lastVolume;
-    } else {
-        player.mute();
-    }
+salirbtn.addEventListener("click", ()=>{
+  limpiar();
+  console.log("saliendo");
+  creadorListas.style.display = "none";
+  contenedorGeneral.style.display = "none";
+  contenedorListas.style.display="flex";
+  nombreLista ="";
+  inputNomList.value = "";
+  lista = ""; 
+  buscaCancion.value = "";
+  muestraListas();
+  listaActual.innerHTML="";
 });
 
-// ⏩ Barra de duración (seek)
-seekBar.addEventListener("input", () => {
-    let seekTo = seekBar.value;
-    console.log("AA")
-    player.seekTo(seekTo, true);
-});
