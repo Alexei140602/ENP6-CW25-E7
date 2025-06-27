@@ -1,135 +1,90 @@
-
-let botonArtistas = document.getElementById("artDestbtn");
-
-botonArtistas.addEventListener("click", ()=>{
-  botonArtistas.style.backgroundColor="rgb(0, 0, 0, 90%)";
-  //Despliega los artistas
-  let recuadroArtist = document.getElementById("artistas");
-
-  if(recuadroArtist.style.display==='none'){
-    recuadroArtist.style.display='inline';
-    let contenedorArts = document.getElementById("artistas");
-    
-    //Despliega el botón con nombre e imágen
-    for (let i=0; i<baseDatosJSON.artistas.length; i++){
-        let nuevoBoton = document.createElement("button");
-        let imagenArtista = document.createElement("img");
-        let nombreArtist = document.createElement("h4");
-        nombreArtist.textContent=baseDatosJSON.artistas[i].nombre;
-        imagenArtista.src=baseDatosJSON.artistas[i].url_img;
-        contenedorArts.classList.add("artistasMenu");
-        imagenArtista.classList.add("imagenArtista");
-        nuevoBoton.classList.add("formatoObs")
-
-        nuevoBoton.appendChild(imagenArtista);
-        nuevoBoton.appendChild(nombreArtist);
-        contenedorArts.appendChild(nuevoBoton);
-
-        //Artista seleccionado 'mouseover'
-        nuevoBoton.addEventListener("mouseover", ()=>{
-          nuevoBoton.style.backgroundColor="rgb(0,0,0,80%)";
-        });
-
-        //Artista sin seleccionar 'mouseout'
-        nuevoBoton.addEventListener("mouseout", ()=>{
-          nuevoBoton.style.backgroundColor="rgb(0,0,0,40%)";
-        });
-        
-        nuevoBoton.addEventListener("click", ()=>{
-          let valor = nuevoBoton.textContent;
-          //Borra todos los botones
-          let totalArtistas = document.getElementById("artistas");
-          totalArtistas.innerHTML="";
-
-          //Recuadro de artista selec.
-          let artistaRecuadro = document.createElement("div");
-          let artistaDescripcion = document.createElement("h7");
-          let imagenArtista = document.createElement("img");
-          let nombreArtista = document.createElement("h4");
-
-          for(let i=0; i<baseDatosJSON.artistas.length; i++){
-            //Despliega imagen, nombre y descripción del artista seleccionado
-            if(baseDatosJSON.artistas[i].nombre === valor){
-              imagenArtista.src=baseDatosJSON.artistas[i].url_img;
-              artistaDescripcion.textContent=baseDatosJSON.artistas[i].descripcion;
-              nombreArtista.textContent=baseDatosJSON.artistas[i].nombre;
-
-              totalArtistas.classList.add("artistasMenu");
-              artistaRecuadro.id="artistaSeleccionado";
-              imagenArtista.id="imgSelecArt";
-
-              artistaRecuadro.appendChild(imagenArtista);
-              artistaRecuadro.appendChild(nombreArtista);
-              artistaRecuadro.appendChild(artistaDescripcion);
-              totalArtistas.appendChild(artistaRecuadro);
-
-              //Despliega los albums del artista
-              for(let i=0; i<baseDatosJSON.album.length; i++){
-                let secAlbums = document.createElement("button");
-                let secImgArt = document.createElement("img");
-                let albumTitle = document.createElement("h4");
-                let titleAlbumsDisp = document.createElement("h2");
-                //let secCanciones = document.createElement("p");
-
-                if(baseDatosJSON.album[i].artista === valor){
-                  secImgArt.src=baseDatosJSON.album[i].url_img;
-                  albumTitle.textContent=baseDatosJSON.album[i].nombre;
-                  titleAlbumsDisp.textContent="Álbumes disponibles";
-
-                  secImgArt.classList.add("imagenArtista");
-                  secAlbums.classList.add("artistasAlbums");
-
-                  secAlbums.appendChild(secImgArt);
-                  secAlbums.appendChild(albumTitle);
-                  totalArtistas.appendChild(titleAlbumsDisp);
-                  totalArtistas.appendChild(secAlbums);
-                }
-              }
-            }
-          }
-        }); 
-        //Al dar click en el album; descripción, imagen, canciones
-    }
-
-  }
-});
-
 //Registro de un usuario
+const regSesion = document.getElementById("regSesion");
+const iniSesion =  document.getElementById("iniSesion");
 const regForm = document.getElementById("formRegSesion");
 const regImagenPerfil = document.getElementById("regImagenPerfil");
 const nomRegUsuario = document.getElementById("nomRegUsuario");
 const regContraseña = document.getElementById("regContraseña");
 const conteFoto= document.getElementById("fotoP");
+const formIniSesion = document.getElementById("formIniSesion");
+const iniContraseña = document.getElementById("iniContraseña");
+const nomIniUsuario = document.getElementById("nomIniUsuario");
+const cambiaReg = document.getElementById("cambiaReg")
+const cambiaIni = document.getElementById("cambiaIni")
+
+//Cookie para canciones
+const nomCancion = document.querySelectorAll("button");
+
+function iniCambReg (eleccion) //Funcion que cambia de inicio de sesion a registro de usuarios y viceversa
+{
+  if(eleccion == 1)
+  {
+    regForm.style.display = "none";
+    formIniSesion.style.display = "flex";
+  }
+  else
+  {
+    regForm.style.display = "flex";
+    formIniSesion.style.display = "none";
+  }
+
+}
+
+cambiaReg.addEventListener("click", ()=>{
+  iniCambReg(2);
+});
+cambiaIni.addEventListener("click", ()=>{
+  iniCambReg(1);
+});
+function iniciaSesion(nombre,constraseña)
+{
+  hola;
+}
 
 regForm.addEventListener("submit", (e)=>{ //Evento que se ejecuta al 
   let error=0;
   let nom = nomRegUsuario.value;
   let contraseña = regContraseña.value;
   let imagen = regImagenPerfil.value;
+  let cookies = document.cookie.split("; ");
 
   e.preventDefault();
 
   console.log("Contraseña: " +regContraseña.value);
   console.log("Imagen: " +regImagenPerfil.value);
   console.log("usuario: " +nomRegUsuario.value);
-
   
-  conteFoto.innerHTML+=`<image src="${regImagenPerfil.value}" alt="imagen Perfil"></image>`
+  conteFoto.innerHTML = "";
+  conteFoto.innerHTML +=`<image src="${regImagenPerfil.value}" alt="imagen Perfil"></image>`;
 
   //Verficacion de valores correctos
   if(nom == "")//Verificacion de que el campo usuario no este vacio
   {
-    alert("El usuario no fue proporcionado");
+    nomRegUsuario.placeholder="El usuario no fue proporcionado";
+    nomRegUsuario.value="";
     error = 1;
   }
+
   if(contraseña.length < 5) //Verificacion de contraseña
   {
-    alert("La contraseña debe tener un largo minimo de 5");
+    regContraseña.placeholder="Largo minimo de 5";
+    regContraseña.value="";
     error = 1;
   }
 
-  //Verificacion pendiente, Verifica que no este repetido el usuario
-
+  //Verifica que no este repetido el usuario
+  for(let cookie of cookies)
+  {
+    let [nombre,valor] = cookie.split('=');
+   
+    if (nombre  === nom.trim())
+    {
+      error = 1;
+      nomRegUsuario.placeholder="El usuario ya existe";
+      nomRegUsuario.value="";
+      console.log("Ya existe");
+    }
+  }
   
     
   if(error == 0)//Comprueba que no haya errores en los valores de registro
@@ -142,31 +97,109 @@ regForm.addEventListener("submit", (e)=>{ //Evento que se ejecuta al
     console.log(usuario);
     let valorCookie=encodeURIComponent(JSON.stringify(usuario));
     let duracion = 1080*10;
+    let cancion = baseDatosJSON.canciones
     console.log(usuario.nombre);
     console.log(valorCookie);
     document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
     console.log(`${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`);
+    document.cookie = `activo=${valorCookie.trim()}; max-age=${duracion}`;
+
+    document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
+
+    cambioP(2,regForm);
+    cambioP(1,nombrePag);
+    cambioP(1,contenedorGeneral);
+    cambioP(1,barraOpc);
   }
   else{
     console.log("no entró");
   }
   console.log(document.cookie.split("; ").length)
+
+});
+
+//Inicio de Sesion
+formIniSesion.addEventListener("submit", (e)=>{
+  
+  e.preventDefault();
+  let nomIni = nomIniUsuario.value;
+  let iniContr = iniContraseña.value;
+  let cookies = document.cookie.split("; ");
+  let [nombre,valor] = cookies[0].split('=')
+  let datos;
+  let encontrados = 0;
+  let error = 0;
+  let valorAct;
+  console.log(nombre + " " + decodeURIComponent(valor));
+  console.log(nomIniUsuario.value);
+  console.log(iniContraseña.value);
+ 
+
+  if(nomIni == "")//Verificacion de que el campo usuario no esté vacio
+  {
+    nomIniUsuario.placeholder="El usuario no fue proporcionado";
+    nomIniUsuario.value="";
+    error = 1;
+   }
+   if(iniContr == "")//Verificacion de que el campo contraseña no esté vacio
+  {
+    iniContraseña.placeholder= "La contraseña no fue proporcionada";
+    iniContraseña.value="";
+    error = 1;
+  }
+
+  console.log(error);
+  if(error == 0)
+  {
+    for(let cookie of cookies)
+    {
+      let [nombre,valor] = cookie.split('=');
+
+      
+      if (nombre  === nomIni.trim())
+      {
+        valorAct=valor;
+        datos=decodeURIComponent(valor);
+        encontrados = 1;
+      }
+    }
+    cambioP(2,formIniSesion);
+    cambioP(1,nombrePag);
+    cambioP(1,contenedorGeneral);
+    cambioP(1,barraOpc);
+  }
+  console.log(encontrados);
+  if(encontrados == 1)
+  { 
+    datos = JSON.parse(datos);
+    console.log(datos);
+    if(datos.nombre === nomIni && datos.password === iniContr)
+    {
+      document.cookie = `Activo=${valorAct}"`;
+      console.log("Iniciando Sesion");
+      formIniSesion.style.display = "none";
+    }
+
+  }
 });
 
 
-
-
+//EXPLORE
 let botonArtistas = document.getElementById("artDestbtn");
 let botonGeneros = document.getElementById("generosbtn");
 let botonAlbums = document.getElementById("albumsbtn");
 let botonHome = document.getElementById("homebtn");
 let botonBiblioteca = document.getElementById("bibliotecasbtn");
-let inputBusc = document.querySelector("input");
+let inputTotal = document.querySelectorAll("input");
+let inputBusc = inputTotal[inputTotal.length-1];
 let resultados = document.getElementById("palabraB");
 
 const espacio = document.createElement("hr");
 
 let contenedorGeneral = document.getElementById("artistas");
+let barraOpc = document.getElementById("barraOpciones");
+let nombrePag = document.getElementById("sonoro");
+
 function limpiar(){
   let contenedorGeneral = document.getElementById("artistas");
   contenedorGeneral.innerHTML="";
@@ -180,7 +213,9 @@ inputBusc.addEventListener("focus", ()=>{
     
       if(valor != ""){
         let cont=0;
-        resultados.style.display= "block";
+        resultados.style.display= "flex";
+        resultados.style.direction="column";
+        resultados.style.position="fixed";
         //Busca en canciones
         for(let i=0; i<baseDatosJSON.canciones.length; i++){
           let cancion = baseDatosJSON.canciones[i].nombre;
@@ -189,7 +224,7 @@ inputBusc.addEventListener("focus", ()=>{
             let busquedas = document.createElement("button");
             busquedas.textContent=(cancion + "ㅤ☆");
             busquedas.classList.add("barraBusqueda");
-            busquedas.id="botonMorado";
+            //busquedas.id="botonMorado";
 
             resultados.appendChild(busquedas);
             cont++;
@@ -204,7 +239,7 @@ inputBusc.addEventListener("focus", ()=>{
 
               busquedas.textContent=(album + "ㅤ♬");
               busquedas.classList.add("barraBusqueda");
-              busquedas.id="botonMorado";
+              //busquedas.id="botonMorado";
 
               resultados.appendChild(busquedas);
               cont++;
@@ -219,13 +254,13 @@ inputBusc.addEventListener("focus", ()=>{
 
               busquedas.textContent=(artistaN + "ㅤ⍟");
               busquedas.classList.add("barraBusqueda");
-              busquedas.id="botonMorado";
+              //busquedas.id="botonMorado";
 
               resultados.appendChild(busquedas);
               cont++;
             }
           }
-        resultados.style.display = cont > 0? "block":"none";
+        resultados.style.display = cont > 0? "flex":"none";
       }
       else
         resultados.style.display= "none";
@@ -629,10 +664,111 @@ botonAlbums.addEventListener("click", ()=>{
 
 botonHome.addEventListener("click", ()=>{
   botonHome.style.backgroundColor="rgb(0, 0, 0, 90%)";
-  //Despliega los artistas
-    limpiar();
 
+  limpiar();
+  //Despliega 3 artistas
+  const contenido=["¿Volver a escuchar?","Tus artistas fav.",
+    "Géneros preferidos","Recomendados 𖤐"];
+  const valorCookie=[1,8,10];
+  const valorCookieG=[1,3,5];
+    
+  for (let j=0; j<contenido.length; j++){
+    let homeGeneral = document.createElement("div");
+    let volverEscuchar = document.createElement("h4");
+    let volvHome = document.createElement("div"); //Display block
+    //Volver a escuchar
+    if(j==0){
+
+    }
+    //Artistas
+    if(j===1){
+      for(let k=0; k<3; k++){
+        
+        let menuHome = document.createElement("div");
+        let artistHome = document.createElement("div");
+        let nombreArtista = document.createElement("h4");
+        let imgHome = document.createElement("img");
+
+        console.log(valorCookie[k] + "valor k");
+        for(let i=0; i<baseDatosJSON.artistas.length; i++){
+          console.log(baseDatosJSON.artistas[i].id + "el id es");
+          if(baseDatosJSON.artistas[i].id === valorCookie[k]){
+            volvHome.classList.add("sectionHome");
+            volvHome.style.display="block";
+            imgHome.id="imgHome";
+            artistHome.classList.add("artistHome");
+
+            //Sección
+            volverEscuchar.textContent=contenido[j];
+            artistHome.classList.add("artistHome");
+            nombreArtista.textContent=baseDatosJSON.artistas[i].nombre;
+            imgHome.src=baseDatosJSON.artistas[i].url_img;
+
+            volvHome.appendChild(volverEscuchar);
+            volvHome.appendChild(menuHome);
+            artistHome.appendChild(nombreArtista);
+            artistHome.appendChild(imgHome);
+            volvHome.appendChild(artistHome);
+            homeGeneral.appendChild(volvHome);
+            contenedorGeneral.appendChild(homeGeneral);
+          }
+        }
+      }
+    }
+    //Géneros
+    if(j==2){
+      for(let k=0; k<3; k++){
+        
+        let menuHome = document.createElement("div");
+        let artistHome = document.createElement("div");
+        let nombreArtista = document.createElement("h4");
+
+        console.log(valorCookieG[k] + "valor k");
+        for(let i=0; i<baseDatosJSON.genero.length; i++){
+          console.log(baseDatosJSON.genero[i].id + "el id es");
+          if(baseDatosJSON.genero[i].id === valorCookieG[k]){
+            volvHome.classList.add("sectionHome");
+            volvHome.style.display="block";
+            artistHome.classList.add("generalT");
+
+            //Sección
+            volverEscuchar.textContent=contenido[j];
+            artistHome.classList.add("artistHome");
+            nombreArtista.textContent=baseDatosJSON.genero[i].nombre;
+
+            volvHome.appendChild(volverEscuchar);
+            volvHome.appendChild(menuHome);
+            artistHome.appendChild(nombreArtista);
+            volvHome.appendChild(artistHome);
+            homeGeneral.appendChild(volvHome);
+            contenedorGeneral.appendChild(homeGeneral);
+          }
+        }
+      }
+    }
+    //Recomendación
+    if(j==3){
+
+    }
+  }
+
+  //oculto=volvHome.style.display==="none";
+  //volvHome.style.display=oculto? "block":"none";
+
+  //Despliega los artistas
+    
 });
+
+//Seccion de artitas id
+
+function cambioP (opc,seccion){
+  if(opc==1){
+    seccion.style.display = "flex";
+  }
+  else{
+    seccion.style.display = "none";
+  }
+}
 //funcion para seleccionar la cancion
 //let linkCancion="nR5l-1lmkkI";
 /*
