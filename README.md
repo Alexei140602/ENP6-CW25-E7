@@ -35,7 +35,9 @@ El objetivo no solo es técnico, sino también colaborativo y comunicativo, refo
 - GitHub
 
 ## Instalacion
--clona
+- clonar el repositorio
+- abrir la pagina
+- iniciar sesion
 
 ## Desarrolladores del Reproductor SonoroJDF
 
