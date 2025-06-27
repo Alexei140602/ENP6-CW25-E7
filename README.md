@@ -34,13 +34,35 @@ El objetivo no solo es técnico, sino también colaborativo y comunicativo, refo
 - YouTube IFrame API
 - GitHub
 
+## Instalacion
+-clona
+
 ## Desarrolladores del Reproductor SonoroJDF
 
 Este proyecto fue desarrollado por los siguientes alumnos como parte del módulo final del curso:
 
 - Rosales Tecuapetla Fátima Elvira  
 - Serrano Ramírez Diego Emilio  
-- Ulage Parias Jorge Adán  
+- Ulage Parias Jorge Adan
+
+ ### Aportaciones
+  -Fatima
+    -maquetado de la página
+    -funcionamiento general
+    -agrupacion de canciones,generos y albumes
+    -barra de busqueda
+    -diseño
+  -Diego
+    -Lista de reproducción
+    -Barra de opciones
+    -Inicio de sesión
+    -Registro de usuario
+  -Jorge
+    -Reproduccion de Canciones
+    -Maquetado
+    -Documentacion del proyecto
+    -preocupacion general del proyecto (brote psicotico)
+    
 ASESOR:
   - Ramíres Pedroza Alexei
 
