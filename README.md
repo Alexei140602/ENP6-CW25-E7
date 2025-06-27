@@ -4,17 +4,17 @@ Repositorio para proyecto del curso web2025, especial para el equipo 7
 REPRODUCTOR DE LYRICS
 De acuerdo a lo aprendido durante este lapso de tiempo en el curso web, este proyecto une la capacidad y conocimientos adquiridos por los alumnos, mediante la práctica, y colaboración, desarrollando de manera conjunta sus habilidades de comunicación y planeación, además de tener un acercamiento con el desarrollo de herramientas y servicios que se utilizan en la actualidad por los usuarios.
 
-# SonoroJDF – Reproductor de música en streaming
+## SonoroJDF – Reproductor de música en streaming
 
 SonoroJDF es un proyecto web que simula una plataforma de reproducción musical tipo Spotify. Este sistema permite al usuario navegar por distintas secciones de contenido musical como artistas destacados, géneros musicales, álbumes y listas personalizadas. La plataforma está diseñada con una interfaz visual atractiva e intuitiva que permite una experiencia de usuario fluida e interactiva.
 
-# Descripción del proyecto
+## Descripción del proyecto
 
 Este proyecto forma parte del curso de Programación Web. Está diseñado como una práctica integradora que combina conocimientos de HTML, CSS y JavaScript, desarrollados a lo largo del curso. A través de esta actividad, los estudiantes aplican lo aprendido en un entorno realista, emulando funcionalidades comunes de servicios modernos de streaming.
 
 El objetivo no solo es técnico, sino también colaborativo y comunicativo, reforzando habilidades como la planificación, el trabajo en equipo y la creatividad aplicada al diseño y funcionalidad de páginas web.
 
-# Características principales
+## Características principales
 
 - Exploración por secciones: Home, Artistas, Géneros, Álbumes, Listas y Tú.
 - Visualización de artistas destacados, con descripción e imagen.
@@ -26,7 +26,7 @@ El objetivo no solo es técnico, sino también colaborativo y comunicativo, refo
 - Barra de busqueda
 - Implementacion de cookies.
 
-# Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - HTML
 - CSS (Diseño responsivo)
@@ -34,7 +34,7 @@ El objetivo no solo es técnico, sino también colaborativo y comunicativo, refo
 - YouTube IFrame API
 - GitHub
 
-# Desarrolladores del Reproductor SonoroJDF
+## Desarrolladores del Reproductor SonoroJDF
 
 Este proyecto fue desarrollado por los siguientes alumnos como parte del módulo final del curso:
 
