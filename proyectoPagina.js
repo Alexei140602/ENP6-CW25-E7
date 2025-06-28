@@ -12,6 +12,16 @@ const nomIniUsuario = document.getElementById("nomIniUsuario");
 const cambiaReg = document.getElementById("cambiaReg")
 const cambiaIni = document.getElementById("cambiaIni")
 
+//Cookie para artistas
+const avicii = document.getElementById(baseDatosJSON.artistas[0].id);
+
+const cookieBotones = document.querySelectorAll("button");
+for(let i=0; i<cookieBotones.length; i++){
+  cookieBotones[i].addEventListener("click", ()=>{
+
+  });
+}
+
 function iniCambReg (eleccion) //Funcion que cambia de inicio de sesion a registro de usuarios y viceversa
 {
   if(eleccion == 1)
@@ -198,9 +208,6 @@ let nombrePag = document.getElementById("sonoro");
 function limpiar(){
   let contenedorGeneral = document.getElementById("artistas");
   contenedorGeneral.innerHTML="";
-  contenedorListas.style.display = "none";
-  contenedorGeneral.style.display ="block";
-  creadorListas.style.display = "none";
 }
 inputBusc.addEventListener("focus", ()=>{
   if(inputBusc === document.activeElement){
@@ -477,7 +484,6 @@ botonGeneros.addEventListener("click", ()=>{
 
       //Al dar click, albums clasificados
       botonGenero.addEventListener("click", ()=>{
-        limpiar();
         let contenedor = document.getElementById("generosCont");
         contenedor.innerHTML="";
 
@@ -584,7 +590,7 @@ botonGeneros.addEventListener("click", ()=>{
     }
 });
 
-botonAlbums.addEventListener("click", ()=>{
+botonAlbums.addEventListener("click", (e)=>{
   botonAlbums.style.backgroundColor="rgb(0, 0, 0, 90%)";
   //Despliega los albums en general
     let contenedorAlbums = document.getElementById("artistas");
@@ -769,6 +775,171 @@ botonHome.addEventListener("click", ()=>{
   //volvHome.style.display=oculto? "block":"none";
 
   //Despliega los artistas
-    limpiar();
+    
+});
 
+//Seccion de artitas id
+function cambioP (opc,seccion){
+  if(opc==1){
+    seccion.style.display = "flex";
+  }
+  else{
+    seccion.style.display = "none";
+  }
+}
+
+//funcion para seleccionar la cancion
+//let linkCancion="nR5l-1lmkkI";
+
+/*
+selCancion.addEventListener('click',(e)=>{
+selCancion=e.target.textContent;
+  for (let i=0; i<baseDatosJSON.canciones.length; i++){
+    if(baseDatosJSON.canciones[i].nombre === selCancion.textContent)
+      linkCancion=baseDatosJSON.canciones[i].link;
+  }
+});*/
+// Asignar este código cuando creas cada botón de canción:
+let botonCancion = document.getElementById('prueba');
+console.log(botonCancion.textContent);
+  console.log("n");
+  botonCancion.addEventListener("click", (e) => {
+    const nombreCancion = e.target.textContent.trim();
+     // Obtener el texto
+     
+    for (let i = 0; i < baseDatosJSON.canciones.length; i++) {
+      console.log("funcion");
+      if (baseDatosJSON.canciones[i].nombre === nombreCancion) {
+        const linkCancion = baseDatosJSON.canciones[i].link;
+        console.log(linkCancion);
+
+        // Si el reproductor ya está listo, carga el nuevo video
+        if (player && typeof player.loadVideoById === "function") {
+          //onYouTubeIframeAPIReady();
+          player.loadVideoById(linkCancion);
+        } else {
+          // Si aún no se ha creado el reproductor, se creará con ese link
+          onYouTubeIframeAPIReady(linkCancion);
+        }
+        break;
+      }
+    }
+  });
+
+//video
+let player;
+let duration = 0;
+let lastVolume = 100;
+let previousVolume;
+let updateInterval;
+
+const seekBar = document.getElementById("seekBar");
+const volumeSlider = document.getElementById("volumeSlider");
+const playPauseBtn = document.getElementById("playPausebtn");
+const muteBtn = document.getElementById("muteBtn");
+
+const vidDuration = document.getElementById("duration");
+const currentTimeSpan = document.getElementById("currentTime");
+let currentVolume;
+
+function onPlayerStateChange(event){
+    if (event.data == YT.PlayerState.PLAYING) {
+        playPauseBtn.textContent = "⏸";
+    } 
+    else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+        playPauseBtn.textContent = "▶";
+    }
+    if (event.data === YT.PlayerState.ENDED) {
+        clearInterval(updateInterval);
+    }
+}
+
+function onYouTubeIframeAPIReady(linkCancion) {
+    player = new YT.Player("player", {
+        videoId: linkCancion,
+        playerVars: {
+            controls: 0,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+        },
+        events: {
+            onReady: onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        },
+    });
+  player.id="player";
+}
+
+function onPlayerReady(event) {
+    duration = player.getDuration();
+    player.mute(); // empieza en mute para evitar bloqueo de autoplay
+    player.playVideo();
+
+    seekBar.max = duration;
+    volumeSlider.value = previousVolume;
+    previousVolume = player.getVolume();
+
+    updateInterval = setInterval(() => {
+        if (player && player.getPlayerState===YT.PlayerState.PLAYING) {
+            seekBar.value=player.getCurrentTime();
+        }
+
+        // Detecta cambio externo de volumen y actualiza el slider
+        currentVolume = player.getVolume();
+        if (currentVolume !== previousVolume) {
+            volumeSlider.value = currentVolume;
+            previousVolume = currentVolume;
+        }
+
+        // Actualiza ícono del botón mute según estado
+        if (player.isMuted()) {
+            muteBtn.textContent = "🔇";
+        } else {
+            muteBtn.textContent = "🔊";
+        }
+    },100);
+}
+
+// ▶️⏸️ Play/Pause
+playPauseBtn.addEventListener("click", () => {
+    let state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+        playPauseBtn.textContent = "▶️";
+    } else {
+        player.playVideo();
+        playPauseBtn.textContent = "⏸️";
+    }
+});
+
+// 🔊 Control de volumen con slider
+volumeSlider.addEventListener("input", () => {
+    const volume = parseInt(volumeSlider.value, 10);
+    player.setVolume(volume);
+
+    // Si estaba muteado y se mueve el slider, se desmutea
+    if (player.isMuted() && volume > 0) {
+        player.unMute();
+    }
+
+    lastVolume = volume;
+    previousVolume = volume;
+});
+
+// 🔇 Mute/Unmute con botón
+muteBtn.addEventListener("click", () => {
+    if (player.isMuted()) {
+        player.unMute();
+        volumeSlider.value = lastVolume;
+    } else {
+        player.mute();
+    }
+});
+
+// ⏩ Barra de duración (seek)
+seekBar.addEventListener("input", () => {
+    let seekTo = seekBar.value;
+    console.log("AA")
+    player.seekTo(seekTo, true);
 });

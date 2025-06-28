@@ -100,6 +100,7 @@ input::placeholder{
     text-align:center
 
 }
+
 .inputSesion{
     border-color: #ffffff00;
     background-color: rgb(90, 51, 128);
@@ -110,7 +111,6 @@ input::placeholder{
     align-items: center;
     align-content: center;
 }
-/* Inicio de sesion*/
 
 /* Artistas*/
 .formatoObs{

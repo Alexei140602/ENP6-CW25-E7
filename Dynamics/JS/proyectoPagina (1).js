@@ -12,6 +12,9 @@ const nomIniUsuario = document.getElementById("nomIniUsuario");
 const cambiaReg = document.getElementById("cambiaReg")
 const cambiaIni = document.getElementById("cambiaIni")
 
+//Cookie para canciones
+const nomCancion = document.querySelectorAll("button");
+
 function iniCambReg (eleccion) //Funcion que cambia de inicio de sesion a registro de usuarios y viceversa
 {
   if(eleccion == 1)
@@ -100,6 +103,8 @@ regForm.addEventListener("submit", (e)=>{ //Evento que se ejecuta al
     document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
     console.log(`${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`);
     document.cookie = `activo=${valorCookie.trim()}; max-age=${duracion}`;
+
+    document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
 
     cambioP(2,regForm);
     cambioP(1,nombrePag);
@@ -198,9 +203,6 @@ let nombrePag = document.getElementById("sonoro");
 function limpiar(){
   let contenedorGeneral = document.getElementById("artistas");
   contenedorGeneral.innerHTML="";
-  contenedorListas.style.display = "none";
-  contenedorGeneral.style.display ="block";
-  creadorListas.style.display = "none";
 }
 inputBusc.addEventListener("focus", ()=>{
   if(inputBusc === document.activeElement){
@@ -413,21 +415,18 @@ botonArtistas.addEventListener("click", ()=>{
                       let contenedorCanciones = document.createElement("div");
                       for(let i=0; i<baseDatosJSON.canciones.length; i++){
                         let cancionesLista = document.createElement("h4");
-                        //let botonCancion = document.createElement("button");
-                        let boton = document.getElementById("prueba");
+                        let botonCancion = document.createElement("button");
 
                         if(baseDatosJSON.canciones[i].album === despliegaAlbum && 
                           baseDatosJSON.canciones[i].artista === artistSelectName.textContent){
                             cancionesLista.textContent=baseDatosJSON.canciones[i].nombre;
 
-                            boton.classList.add("generalT");
-                            //botonCancion.classList.add("buttonCancion");
-                            boton.style.display="block";
+                            botonCancion.classList.add("generalT");
                             contenedorCanciones.id="artistaSeleccionado";
                             //cancionesLista.id="artistaSelec";
 
-                            boton.appendChild(cancionesLista);
-                            contenedorCanciones.appendChild(boton);
+                            botonCancion.appendChild(cancionesLista);
+                            contenedorCanciones.appendChild(botonCancion);
                             totalArtistas.appendChild(contenedorCanciones);
                           
                         }
@@ -477,7 +476,6 @@ botonGeneros.addEventListener("click", ()=>{
 
       //Al dar click, albums clasificados
       botonGenero.addEventListener("click", ()=>{
-        limpiar();
         let contenedor = document.getElementById("generosCont");
         contenedor.innerHTML="";
 
@@ -556,21 +554,17 @@ botonGeneros.addEventListener("click", ()=>{
                     let contenedorCanciones = document.createElement("div");
                     for(let i=0; i<baseDatosJSON.canciones.length; i++){
                       let cancionesLista = document.createElement("h4");
-                      //let botonCancion = document.createElement("button");
-                      let boton = document.getElementById("prueba");
+                      let botonCancion = document.createElement("button");
 
                       if(baseDatosJSON.canciones[i].album === nombreAlbum.textContent && 
                         baseDatosJSON.canciones[i].artista === nombreArtista.textContent){
                           cancionesLista.textContent=baseDatosJSON.canciones[i].nombre;
 
-                          //botonCancion.classList.add("generalT");
-                          //botonCancion.classList.add("buttonCancion");
-                          //boton.classList.add("generalT");
+                          botonCancion.classList.add("generalT");
                           contenedorCanciones.id="artistaSeleccionado";
-                          boton.style.display="block";
 
-                          boton.appendChild(cancionesLista);
-                          contenedorCanciones.appendChild(boton);
+                          botonCancion.appendChild(cancionesLista);
+                          contenedorCanciones.appendChild(botonCancion);
                           contenedorGeneral.appendChild(contenedorCanciones);
                       }
                     }
@@ -648,25 +642,18 @@ botonAlbums.addEventListener("click", ()=>{
           let contenedorCanciones = document.createElement("div");
           for(let i=0; i<baseDatosJSON.canciones.length; i++){
             let cancionesLista = document.createElement("h4");
-            //let botonCancion = document.createElement("button");
-            let boton = document.getElementById("prueba");
+            let botonCancion = document.createElement("button");
 
             if(baseDatosJSON.canciones[i].album === nombreAlbum.textContent && 
               baseDatosJSON.canciones[i].artista === nombreArtista.textContent){
                 cancionesLista.textContent=baseDatosJSON.canciones[i].nombre;
 
-                //botonCancion.classList.add("generalT");
-                //botonCancion.classList.add("buttonCancion");
+                botonCancion.classList.add("generalT");
                 contenedorCanciones.id="artistaSeleccionado";
-                prueba.style.display="block";
 
-                prueba.appendChild(cancionesLista);
-                contenedorCanciones.appendChild(prueba);
+                botonCancion.appendChild(cancionesLista);
+                contenedorCanciones.appendChild(botonCancion);
                 contenedorGeneral.appendChild(contenedorCanciones);
-
-                if(e.target.classList.contains('buttonCancion')){
-                  console.log("n");
-                }
             }
           }
         }
@@ -769,6 +756,163 @@ botonHome.addEventListener("click", ()=>{
   //volvHome.style.display=oculto? "block":"none";
 
   //Despliega los artistas
-    limpiar();
+    
+});
 
+//Seccion de artitas id
+
+function cambioP (opc,seccion){
+  if(opc==1){
+    seccion.style.display = "flex";
+  }
+  else{
+    seccion.style.display = "none";
+  }
+}
+//funcion para seleccionar la cancion
+//let linkCancion="nR5l-1lmkkI";
+/*
+selCancion.addEventListener('click',(e)=>{
+selCancion=e.target.textContent;
+  for (let i=0; i<baseDatosJSON.canciones.length; i++){
+    if(baseDatosJSON.canciones[i].nombre === selCancion.textContent)
+      linkCancion=baseDatosJSON.canciones[i].link;
+  }
+});*/
+// Asignar este código cuando creas cada botón de canción:
+/*
+botonCancion.addEventListener("click", (e) => {
+  const nombreCancion = e.target.textContent.trim(); // Obtener el texto
+  for (let i = 0; i < baseDatosJSON.canciones.length; i++) {
+    if (baseDatosJSON.canciones[i].nombre === nombreCancion) {
+      linkCancion = baseDatosJSON.canciones[i].link;
+
+      // Si el reproductor ya está listo, carga el nuevo video
+      if (player && typeof player.loadVideoById === "function") {
+        player.loadVideoById(linkCancion);
+      } else {
+        // Si aún no se ha creado el reproductor, se creará con ese link
+        onYouTubeIframeAPIReady();
+      }
+      break;
+    }
+  }
+});
+ESTO NO*/
+//video
+let player;
+let duration = 0;
+let lastVolume = 100;
+let previousVolume;
+let updateInterval;
+
+const seekBar = document.getElementById("seekBar");
+const volumeSlider = document.getElementById("volumeSlider");
+const playPauseBtn = document.getElementById("playPausebtn");
+const muteBtn = document.getElementById("muteBtn");
+
+const vidDuration = document.getElementById("duration");
+const currentTimeSpan = document.getElementById("currentTime");
+let currentVolume
+
+function onPlayerReady(event) {
+    duration = player.getDuration();
+    player.mute(); // empieza en mute para evitar bloqueo de autoplay
+    player.playVideo();
+
+    previousVolume = player.getVolume();
+    volumeSlider.value = previousVolume;
+    seekBar.max = duration;
+
+    updateInterval = setInterval(() => {
+        if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+            seekBar.value = player.getCurrentTime();
+        }
+
+        // Detecta cambio externo de volumen y actualiza el slider
+        currentVolume = player.getVolume();
+        if (currentVolume !== previousVolume) {
+            volumeSlider.value = currentVolume;
+            previousVolume = currentVolume;
+        }
+
+        // Actualiza ícono del botón mute según estado
+        if (player.isMuted()) {
+            muteBtn.textContent = "🔇";
+        } else {
+            muteBtn.textContent = "🔊";
+        }
+    }, 1000);
+}
+
+function onPlayerStateChange(event){
+    if (event.data == YT.PlayerState.PLAYING) {
+        playPauseBtn.textContent = "⏸";
+    } 
+    else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+        playPauseBtn.textContent = "▶";
+    }
+    if (event.data === YT.PlayerState.ENDED) {
+        clearInterval(updateInterval);
+    }
+}
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player("player", {
+        videoId: linkCancion,
+        playerVars: {
+            controls: 0,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+        },
+        events: {
+            onReady: onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        },
+    });
+}
+
+
+// ▶️⏸️ Play/Pause
+playPauseBtn.addEventListener("click", () => {
+    let state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+        playPauseBtn.textContent = "▶️";
+    } else {
+        player.playVideo();
+        playPauseBtn.textContent = "⏸️";
+    }
+});
+
+// 🔊 Control de volumen con slider
+volumeSlider.addEventListener("input", () => {
+    const volume = parseInt(volumeSlider.value, 10);
+    player.setVolume(volume);
+
+    // Si estaba muteado y se mueve el slider, se desmutea
+    if (player.isMuted() && volume > 0) {
+        player.unMute();
+    }
+
+    lastVolume = volume;
+    previousVolume = volume;
+});
+
+// 🔇 Mute/Unmute con botón
+muteBtn.addEventListener("click", () => {
+    if (player.isMuted()) {
+        player.unMute();
+        volumeSlider.value = lastVolume;
+    } else {
+        player.mute();
+    }
+});
+
+// ⏩ Barra de duración (seek)
+seekBar.addEventListener("input", () => {
+    let seekTo = seekBar.value;
+    console.log("AA")
+    player.seekTo(seekTo, true);
 });
