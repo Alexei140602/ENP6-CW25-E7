@@ -100,6 +100,7 @@ input::placeholder{
     text-align:center
 
 }
+
 .inputSesion{
     border-color: #ffffff00;
     background-color: rgb(90, 51, 128);
@@ -110,7 +111,6 @@ input::placeholder{
     align-items: center;
     align-content: center;
 }
-/* Inicio de sesion*/
 
 /* Artistas*/
 .formatoObs{
@@ -363,22 +363,22 @@ body{
 
 
 #contReproductor{
-    background-color: rgb(0,0,0,70%);
+    background-color: rgba(0, 0, 0, 0.447);
     border-radius: 5% 5% 5% 5%;
     border: none;
     font-size: 19px;
     color: rgb(255, 255, 255);
-    padding: 15px 15px 15px 15px;
+    padding: 15px 5px 5px 10px;
     margin: 5px 5px 5px 5px;
-    width: 50px;
-    height: 50px;
+    width: 80%;
+    height: 30%;
     transition-duration: 0.4s;
     cursor:pointer;
 }
 #player{
     margin: 5px 5px 5px 5px;
-    width: 20px;
-    height: 20px;
+    width: 95%;
+    height: 30%;
 }
 #playPausebtn{
 background-color: rgb(131, 17, 131);
@@ -389,3 +389,34 @@ background-color: rgb(131, 17, 131);
     border-radius: 5% 5% 5% 5%;   
 }
 /*Barra de opciones*/
+
+/*Listas*/
+
+#creadorListas{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-left: 15%;
+    margin-top: 8%;
+    position:block;
+    width: 30%;
+    height: 45%;
+    display:none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    border-radius:15% ;
+}
+#contenedorListas{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin-left: 15%;
+    margin-top: 8%;
+    position:block;
+    width: 30%;
+    height: 45%;
+    display:none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    border-radius:15% ;
+}
