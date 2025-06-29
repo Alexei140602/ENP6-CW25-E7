@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonoroJDF</title>
+    <style>
+      body{
+        background-image: url("../Statics/imagenes/fondo.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+      }
+    </style>
+    <script src="../Dynamics/JS/baseDeDatos.js"></script>
+    <link rel="stylesheet" href="../Statics/proyecto.css">
+    <link rel="icon" href="../Statics/imagenes/SonoroJDF.png">
+</head>
+<body>  
+     <!--Vista Inicio de Sesion-->
+    <div id="iniSesion" >
+        <form id="formIniSesion">
+            <h1 class="titulo">Inicia Sesion <br>   SonoroJDF</h1>
+            <div id="formUsuario">
+                <br>
+                <label for="nomUsuario">Nombre del usuario</label>
+                <input type="text" name="nomIniUsuario" id="nomIniUsuario" class="inputSesion" placeholder=" Nombre de usuario">
+                <br>
+                <label for="contraseña">Contraseña</label>     
+                <input type="password" id="iniContraseña" name="iniContraseña " class="inputSesion" placeholder="Ingrese su contraseña">
+                <br>
+                <input type="submit" id="subirUsuario">
+                <p id="cambiaReg" class="cambiobtn">Registrar Usuario</p>
+            </div>
+        </form>
+    </div> 
+
+    <!--listas de Reproduccion-->
+
+    <div id="contenedorListas" >
+        <button class="selector"id="crearLista">Crea nueva lista</button>
+        <div id="mList"> </div>
+    </div>
+
+    <div id="creadorListas" >
+        <button id="salirCreaLista">Salir</button>
+        <button id="guardarLista">Guardar</button>
+        <input type="text" id="nombreLista">
+        <br>
+        <div id="buscadorCrea">
+            <select name="buscaCancion" id="buscaCancion">
+            </select>
+        </div>
+        <div id="listaActual"></div>
+    </div>
+
+     <!--Registro Sesion-->
+     <div id="regSesion" >
+        <form id="formRegSesion">
+            <aside id="sideBarRegSesion"> 
+                <div id="conteFoto">
+                    <input type="file" id="regImagenPerfil">= 
+                    <label for="imagenPerfil">Foto de Perfil (opcional)</label >
+                </div>
+                <div id="fotoP" ></div>
+            </aside> 
+            <br>
+            <div id="formRegUsuario">
+                <label for="nomUsuario">Email o nombre del usuario</label>
+                <input type="text" name="nomRegUsuario" id="nomRegUsuario" class="inputSesion" placeholder=" Email o nombre de usuario">
+                <br>
+                <label for="contraseña">Contraseña</label>     
+                <input type="text" id="regContraseña" name="regContraseña " class="inputSesion" placeholder="Ingrese su contraseña(min 5 caracteres)">
+                <br>
+                <input type="submit" id="regUsuario" >
+                <p id="cambiaIni" class="cambiobtn" >Inicia Sesion</p>
+            </div>
+            
+        </form>
+       
+    </div> 
+    
+    <!--Nombre de la página-->
+      <section id="sonoro" style="display:none">
+        <div id="sonoroT">Sonoro JDF ⚝⭒</div>
+        <!--Barra de búsqueda-->
+        <input type="text" class="barraBusqueda" placeholder="Canción del día   ☆">
+      </section>
+      <section id="palabraB" style="display:none" class="barraBusqueda"></section>
+
+      <button class="generalT buttonCancion" id ="prueba" style="display:none"></button>
+
+     <!--Barra de opciones-->
+    <aside id="barraOpciones" style="display:none">
+        <div>
+            <h4 class="titulo">Explore</h4>
+            <hr>
+            <div id="home">
+                
+                <button class="selector" id="homebtn"><image class="iconoOpcion" id="homeImg" src="../Statics/imagenes/iconoHome.png"></image>  Home</button>
+            </div>
+        </div>
+        <div id="bibliotecas">
+            
+            <button class="selector" id="bibliotecasbtn"><image class="iconoOpcion" id="bibliotecasImg" src="../Statics/imagenes/iconoBiblioteca.png"></image>  Bibliotecas</button>
+
+            <div id="desplegaBiblio" >
+                <div id="artDest">
+                
+                    <button class="selector" id="artDestbtn"><image class="iconoOpcion" id="ArtDestImg" src="../Statics/imagenes/iconoArtDest.png"></image>  Artistas Destacados</button>
+                </div>
+                <div id="generos">
+                    
+                    <button class="selector" id="generosbtn"><image class="iconoOpcion" id="generosImg" src="../Statics/imagenes/iconoGeneros.png"></image>  Géneros</button>
+                </div>
+                <div id="albums">
+                
+                    <button class="selector" id="albumsbtn"><image class="iconoOpcion" id="albumsImg" src="../Statics/imagenes/iconoAlbums.png"></image>  Albums</button>
+                </div>
+            </div>    
+
+        </div>
+        <div id="listas">
+        
+            <button class="selector" id="listasbtn"><image class="iconoOpcion" id="listasImg" src="../Statics/imagenes/iconoListas.png"></image>  Listas</button>
+        </div>
+        <div id="reciente">
+            
+            <button class="selector" id="recientebtn"><image class="iconoOpcion" id="recienteImg" src="../Statics/imagenes/iconoRecientes.png"></image>  Reciente</button>
+        </div>
+        <div id="tu">
+        
+            <button class="selector" id="tubtn"><image class="iconoOpcion" id="tuImg" src="../Statics/imagenes/iconoTu.png"></image>  Tú</button>
+        </div>
+        
+        <!--Controles del reprpoductor-->
+        <div id="contReproductor">
+            <label for="volumeSlider">Volumen:</label>
+                <button type="text" id="muteBtn"></button> 
+                <input type="range" max="100"  id="volumeSlider">
+                <label for="seekBar">Duracion:</label>
+                <input type="range" min="0" max="100" value="0" id="seekBar"><br>
+                <button id="playPausebtn">⏸</button> 
+            <div id="player">
+                
+            </div>
+        </div>
+    
+    </aside>
+
+    <!--Home-->
+    <!--Artistas y albums-->
+    <section class="artistasMenu" id="artistas" style="display:none">
+        <section id="homeGeneral">
+            <section class="sectionHome" id="volvHome" style="display:block">
+                    <h4>¿Volver a escuchar?</h4>
+                <section id="menuHome">
+                    <section class="artistHome">
+                    <h4>Ed Sheeran</h4>
+                    <img id="imgHome" src="https://th.bing.com/th/id/R.6c040bceb1677693045be15b95984632?rik=1Oo65ipn76DITw&pid=ImgRaw&r=0">
+                    </section>
+                    <section class="artistHome">
+                        <h4>Mecano</h4>
+                        <img id="imgHome" src="https://i.scdn.co/image/d6b66ff338e079e9db9ad7841fc34e56ba1c4eb3">
+                    </section>
+                    <section class="artistHome">
+                        <h4>Avicii</h4>
+                        <img id="imgHome" src="https://th.bing.com/th/id/OIP.dV11R0wWU0oxey881qWZVAHaE_?rs=1&pid=ImgDetMain">
+                    </section>
+                </section>
+            </section>
+
+            <section class="sectionHome" style="display:block">
+            <h4>Tus artistas fav.</h4>
+            <section id="menuHome">
+                <section class="artistHome">
+                <h4>Adele</h4>
+                <img id="imgHome" src="https://creativetalentbooking.com/wp-content/uploads/2023/02/Adelle.jpg">
+                </section>
+                <section class="artistHome">
+                    <h4>BTS</h4>
+                    <img id="imgHome" src="https://th.bing.com/th/id/OIP.LCphAr5S07jlyoo0BncFBAAAAA?rs=1&pid=ImgDetMain">
+                </section>
+                <section class="artistHome">
+                    <h4>MARINA</h4>
+                    <img id="imgHome" src="https://th.bing.com/th/id/OIP.bGNG9AusmKOp3m5znt7DQwAAAA?rs=1&pid=ImgDetMain">
+                </section>
+            </section>
+            </section>
+
+            <section class="sectionHome" id="generosHome" style="display:block">
+            <h4>Géneros preferidos</h4>
+            <section id="menuHome">
+                <section class="generalT">
+                    <h4>Música electrónica</h4>
+                </section>
+                <section class="generalT">
+                    <h4>Pop</h4>
+                </section>  
+                <section class="generalT">
+                    <h4>Rock</h4>
+                </section>
+                <section class="generalT">
+                    <h4>Hip hop</h4>
+                </section>
+                <section class="generalT">
+                    <h4>R&B</h4>
+                </section>
+                <section class="generalT">
+                    <h4>Country</h4>
+                </section>
+                <section class="generalT">
+                    <h4>Jazz</h4>
+                </section>
+            </section>
+            </section>
+            
+            <section class="sectionHome" id="recomHome" style="display:block">
+                    <h4>Recomendado 𖤐</h4>
+                <section id="menuHome">
+                    <section class="artistHome">
+                    <h4>Ed Sheeran</h4>
+                    <img id="imgHome" src="https://th.bing.com/th/id/R.6c040bceb1677693045be15b95984632?rik=1Oo65ipn76DITw&pid=ImgRaw&r=0">
+                    </section>
+                    <section class="artistHome">
+                        <h4>Mecano</h4>
+                        <img id="imgHome" src="https://i.scdn.co/image/d6b66ff338e079e9db9ad7841fc34e56ba1c4eb3">
+                    </section>
+                    <section class="artistHome">
+                        <h4>Avicii</h4>
+                        <img id="imgHome" src="https://th.bing.com/th/id/OIP.dV11R0wWU0oxey881qWZVAHaE_?rs=1&pid=ImgDetMain">
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+
+    <aside id="contenido"></aside>
+    
+    <!--Recuadro géneros-->
+      <div id="generosCont"></div>
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
+    </aside>
+</body>
+<script src="../Dynamics/JS/proyectoPagina.js"></script>
+</html>
