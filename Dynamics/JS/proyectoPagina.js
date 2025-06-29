@@ -53,22 +53,43 @@ regForm.addEventListener("submit", (e)=>{ //Evento que se ejecuta al
   
   conteFoto.innerHTML = "";
   conteFoto.innerHTML +=`<image src="${regImagenPerfil.value}" alt="imagen Perfil"></image>`;
+  
+  conteFoto.innerHTML = "";
+  conteFoto.innerHTML +=`<image src="${regImagenPerfil.value}" alt="imagen Perfil"></image>`;
 
   //Verficacion de valores correctos
   if(nom == "")//Verificacion de que el campo usuario no este vacio
   {
     nomRegUsuario.placeholder="El usuario no fue proporcionado";
     nomRegUsuario.value="";
+    nomRegUsuario.placeholder="El usuario no fue proporcionado";
+    nomRegUsuario.value="";
     error = 1;
   }
+
 
   if(contraseña.length < 5) //Verificacion de contraseña
   {
     regContraseña.placeholder="Largo minimo de 5";
     regContraseña.value="";
+    regContraseña.placeholder="Largo minimo de 5";
+    regContraseña.value="";
     error = 1;
   }
 
+  //Verifica que no este repetido el usuario
+  for(let cookie of cookies)
+  {
+    let [nombre,valor] = cookie.split('=');
+   
+    if (nombre  === nom.trim())
+    {
+      error = 1;
+      nomRegUsuario.placeholder="El usuario ya existe";
+      nomRegUsuario.value="";
+      console.log("Ya existe");
+    }
+  }
   //Verifica que no este repetido el usuario
   for(let cookie of cookies)
   {
@@ -99,6 +120,12 @@ regForm.addEventListener("submit", (e)=>{ //Evento que se ejecuta al
     console.log(valorCookie);
     document.cookie = `${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`;
     console.log(`${usuario.nombre.trim()}=${valorCookie.trim()}; max-age=${duracion}`);
+    document.cookie = `activo=${valorCookie.trim()}; max-age=${duracion}`;
+
+    cambioP(2,regForm);
+    cambioP(1,nombrePag);
+    cambioP(1,contenedorGeneral);
+    cambioP(1,barraOpc);
     document.cookie = `activo=${valorCookie.trim()}; max-age=${duracion}`;
 
     cambioP(2,regForm);
@@ -180,6 +207,90 @@ formIniSesion.addEventListener("submit", (e)=>{
 
 
 //EXPLORE
+
+});
+
+//Inicio de Sesion
+formIniSesion.addEventListener("submit", (e)=>{
+  
+  e.preventDefault();
+  let nomIni = nomIniUsuario.value;
+  let iniContr = iniContraseña.value;
+  let cookies = document.cookie.split("; ");
+  let [nombre,valor] = cookies[0].split('=')
+  let datos;
+  let encontrados = 0;
+  let error = 0;
+  let valorAct;
+  console.log(nombre + " " + decodeURIComponent(valor));
+  console.log(nomIniUsuario.value);
+  console.log(iniContraseña.value);
+ 
+
+  if(nomIni == "")//Verificacion de que el campo usuario no esté vacio
+  {
+    nomIniUsuario.placeholder="El usuario no fue proporcionado";
+    nomIniUsuario.value="";
+    error = 1;
+   }
+   if(iniContr == "")//Verificacion de que el campo contraseña no esté vacio
+  {
+    iniContraseña.placeholder= "La contraseña no fue proporcionada";
+    iniContraseña.value="";
+    error = 1;
+  }
+
+  console.log(error);
+  if(error == 0)
+  {
+    for(let cookie of cookies)
+    {
+      let [nombre,valor] = cookie.split('=');
+
+      
+      if (nombre  === nomIni.trim())
+      {
+        valorAct=valor;
+        datos=decodeURIComponent(valor);
+        encontrados = 1;
+      }
+    }
+    
+  }
+  console.log(encontrados);
+  if(encontrados == 1)
+  { 
+    datos = JSON.parse(datos);
+    console.log(datos);
+    if(datos.nombre === nomIni )
+    {
+      if(datos.password === iniContr)
+      {
+        document.cookie = `Activo=${valorAct}"`;
+        console.log("Iniciando Sesion");
+        formIniSesion.style.display = "none";
+        cambioP(2,formIniSesion);
+        cambioP(1,nombrePag);
+        cambioP(1,contenedorGeneral);
+        cambioP(1,barraOpc);
+      }
+      else
+      {
+        iniContraseña.placeholder = "La contraseña no es correcta";
+        iniContraseña.value="";
+      }
+    }
+    
+  }
+  else
+  {
+    nomIniUsuario.placeholder="El usuario no existe";
+    nomIniUsuario.value="";
+  }
+});
+
+
+//EXPLORE
 let botonArtistas = document.getElementById("artDestbtn");
 let botonGeneros = document.getElementById("generosbtn");
 let botonAlbums = document.getElementById("albumsbtn");
@@ -187,11 +298,16 @@ let botonHome = document.getElementById("homebtn");
 let botonBiblioteca = document.getElementById("bibliotecasbtn");
 let inputTotal = document.querySelectorAll("input");
 let inputBusc = inputTotal[inputTotal.length-1];
+let inputTotal = document.querySelectorAll("input");
+let inputBusc = inputTotal[inputTotal.length-1];
 let resultados = document.getElementById("palabraB");
 
 const espacio = document.createElement("hr");
 
 let contenedorGeneral = document.getElementById("artistas");
+let barraOpc = document.getElementById("barraOpciones");
+let nombrePag = document.getElementById("sonoro");
+
 let barraOpc = document.getElementById("barraOpciones");
 let nombrePag = document.getElementById("sonoro");
 
@@ -214,6 +330,9 @@ inputBusc.addEventListener("focus", ()=>{
         resultados.style.display= "flex";
         resultados.style.direction="column";
         resultados.style.position="fixed";
+        resultados.style.display= "flex";
+        resultados.style.direction="column";
+        resultados.style.position="fixed";
         //Busca en canciones
         for(let i=0; i<baseDatosJSON.canciones.length; i++){
           let cancion = baseDatosJSON.canciones[i].nombre;
@@ -222,6 +341,7 @@ inputBusc.addEventListener("focus", ()=>{
             let busquedas = document.createElement("button");
             busquedas.textContent=(cancion + "ㅤ☆");
             busquedas.classList.add("barraBusqueda");
+            //busquedas.id="botonMorado";
             //busquedas.id="botonMorado";
 
             resultados.appendChild(busquedas);
@@ -238,6 +358,7 @@ inputBusc.addEventListener("focus", ()=>{
               busquedas.textContent=(album + "ㅤ♬");
               busquedas.classList.add("barraBusqueda");
               //busquedas.id="botonMorado";
+              //busquedas.id="botonMorado";
 
               resultados.appendChild(busquedas);
               cont++;
@@ -253,11 +374,13 @@ inputBusc.addEventListener("focus", ()=>{
               busquedas.textContent=(artistaN + "ㅤ⍟");
               busquedas.classList.add("barraBusqueda");
               //busquedas.id="botonMorado";
+              //busquedas.id="botonMorado";
 
               resultados.appendChild(busquedas);
               cont++;
             }
           }
+        resultados.style.display = cont > 0? "flex":"none";
         resultados.style.display = cont > 0? "flex":"none";
       }
       else
@@ -415,6 +538,8 @@ botonArtistas.addEventListener("click", ()=>{
                         let cancionesLista = document.createElement("h4");
                         //let botonCancion = document.createElement("button");
                         let boton = document.getElementById("prueba");
+                        //let botonCancion = document.createElement("button");
+                        let boton = document.getElementById("prueba");
 
                         if(baseDatosJSON.canciones[i].album === despliegaAlbum && 
                           baseDatosJSON.canciones[i].artista === artistSelectName.textContent){
@@ -423,9 +548,14 @@ botonArtistas.addEventListener("click", ()=>{
                             boton.classList.add("generalT");
                             //botonCancion.classList.add("buttonCancion");
                             boton.style.display="block";
+                            boton.classList.add("generalT");
+                            //botonCancion.classList.add("buttonCancion");
+                            boton.style.display="block";
                             contenedorCanciones.id="artistaSeleccionado";
                             //cancionesLista.id="artistaSelec";
 
+                            boton.appendChild(cancionesLista);
+                            contenedorCanciones.appendChild(boton);
                             boton.appendChild(cancionesLista);
                             contenedorCanciones.appendChild(boton);
                             totalArtistas.appendChild(contenedorCanciones);
@@ -558,6 +688,8 @@ botonGeneros.addEventListener("click", ()=>{
                       let cancionesLista = document.createElement("h4");
                       //let botonCancion = document.createElement("button");
                       let boton = document.getElementById("prueba");
+                      //let botonCancion = document.createElement("button");
+                      let boton = document.getElementById("prueba");
 
                       if(baseDatosJSON.canciones[i].album === nombreAlbum.textContent && 
                         baseDatosJSON.canciones[i].artista === nombreArtista.textContent){
@@ -566,9 +698,15 @@ botonGeneros.addEventListener("click", ()=>{
                           //botonCancion.classList.add("generalT");
                           //botonCancion.classList.add("buttonCancion");
                           //boton.classList.add("generalT");
+                          //botonCancion.classList.add("generalT");
+                          //botonCancion.classList.add("buttonCancion");
+                          //boton.classList.add("generalT");
                           contenedorCanciones.id="artistaSeleccionado";
                           boton.style.display="block";
+                          boton.style.display="block";
 
+                          boton.appendChild(cancionesLista);
+                          contenedorCanciones.appendChild(boton);
                           boton.appendChild(cancionesLista);
                           contenedorCanciones.appendChild(boton);
                           contenedorGeneral.appendChild(contenedorCanciones);
@@ -584,7 +722,9 @@ botonGeneros.addEventListener("click", ()=>{
     }
 });
 
-botonAlbums.addEventListener("click", ()=>{
+botonAlbums.addEventListener("click", (e)=>{
+botonAlbums.addEventListener("click", (e)=>{
+  limpiar();
   botonAlbums.style.backgroundColor="rgb(0, 0, 0, 90%)";
   //Despliega los albums en general
     let contenedorAlbums = document.getElementById("artistas");
@@ -650,6 +790,8 @@ botonAlbums.addEventListener("click", ()=>{
             let cancionesLista = document.createElement("h4");
             //let botonCancion = document.createElement("button");
             let boton = document.getElementById("prueba");
+            //let botonCancion = document.createElement("button");
+            let boton = document.getElementById("prueba");
 
             if(baseDatosJSON.canciones[i].album === nombreAlbum.textContent && 
               baseDatosJSON.canciones[i].artista === nombreArtista.textContent){
@@ -657,12 +799,21 @@ botonAlbums.addEventListener("click", ()=>{
 
                 //botonCancion.classList.add("generalT");
                 //botonCancion.classList.add("buttonCancion");
+                //botonCancion.classList.add("generalT");
+                //botonCancion.classList.add("buttonCancion");
                 contenedorCanciones.id="artistaSeleccionado";
+                prueba.style.display="block";
                 prueba.style.display="block";
 
                 prueba.appendChild(cancionesLista);
                 contenedorCanciones.appendChild(prueba);
+                prueba.appendChild(cancionesLista);
+                contenedorCanciones.appendChild(prueba);
                 contenedorGeneral.appendChild(contenedorCanciones);
+
+                if(e.target.classList.contains('buttonCancion')){
+                  console.log("n");
+                }
 
                 if(e.target.classList.contains('buttonCancion')){
                   console.log("n");
@@ -768,7 +919,263 @@ botonHome.addEventListener("click", ()=>{
   //oculto=volvHome.style.display==="none";
   //volvHome.style.display=oculto? "block":"none";
 
-  //Despliega los artistas
-    limpiar();
 
+  limpiar();
+  //Despliega 3 artistas
+  const contenido=["¿Volver a escuchar?","Tus artistas fav.",
+    "Géneros preferidos","Recomendados 𖤐"];
+  const valorCookie=[1,8,10];
+  const valorCookieG=[1,3,5];
+    
+  for (let j=0; j<contenido.length; j++){
+    let homeGeneral = document.createElement("div");
+    let volverEscuchar = document.createElement("h4");
+    let volvHome = document.createElement("div"); //Display block
+    //Volver a escuchar
+    if(j==0){
+
+    }
+    //Artistas
+    if(j===1){
+      for(let k=0; k<3; k++){
+        
+        let menuHome = document.createElement("div");
+        let artistHome = document.createElement("div");
+        let nombreArtista = document.createElement("h4");
+        let imgHome = document.createElement("img");
+
+        console.log(valorCookie[k] + "valor k");
+        for(let i=0; i<baseDatosJSON.artistas.length; i++){
+          console.log(baseDatosJSON.artistas[i].id + "el id es");
+          if(baseDatosJSON.artistas[i].id === valorCookie[k]){
+            volvHome.classList.add("sectionHome");
+            volvHome.style.display="block";
+            imgHome.id="imgHome";
+            artistHome.classList.add("artistHome");
+
+            //Sección
+            volverEscuchar.textContent=contenido[j];
+            artistHome.classList.add("artistHome");
+            nombreArtista.textContent=baseDatosJSON.artistas[i].nombre;
+            imgHome.src=baseDatosJSON.artistas[i].url_img;
+
+            volvHome.appendChild(volverEscuchar);
+            volvHome.appendChild(menuHome);
+            artistHome.appendChild(nombreArtista);
+            artistHome.appendChild(imgHome);
+            volvHome.appendChild(artistHome);
+            homeGeneral.appendChild(volvHome);
+            contenedorGeneral.appendChild(homeGeneral);
+          }
+        }
+      }
+    }
+    //Géneros
+    if(j==2){
+      for(let k=0; k<3; k++){
+        
+        let menuHome = document.createElement("div");
+        let artistHome = document.createElement("div");
+        let nombreArtista = document.createElement("h4");
+
+        console.log(valorCookieG[k] + "valor k");
+        for(let i=0; i<baseDatosJSON.genero.length; i++){
+          console.log(baseDatosJSON.genero[i].id + "el id es");
+          if(baseDatosJSON.genero[i].id === valorCookieG[k]){
+            volvHome.classList.add("sectionHome");
+            volvHome.style.display="block";
+            artistHome.classList.add("generalT");
+
+            //Sección
+            volverEscuchar.textContent=contenido[j];
+            artistHome.classList.add("artistHome");
+            nombreArtista.textContent=baseDatosJSON.genero[i].nombre;
+
+            volvHome.appendChild(volverEscuchar);
+            volvHome.appendChild(menuHome);
+            artistHome.appendChild(nombreArtista);
+            volvHome.appendChild(artistHome);
+            homeGeneral.appendChild(volvHome);
+            contenedorGeneral.appendChild(homeGeneral);
+          }
+        }
+      }
+    }
+    //Recomendación
+    if(j==3){
+
+    }
+  }
+
+  //oculto=volvHome.style.display==="none";
+  //volvHome.style.display=oculto? "block":"none";
+
+  //Despliega los artistas
+    
+});
+
+//Seccion de artitas id
+function cambioP (opc,seccion){
+  if(opc==1){
+    seccion.style.display = "flex";
+  }
+  else{
+    seccion.style.display = "none";
+  }
+}
+
+//funcion para seleccionar la cancion
+//let linkCancion="nR5l-1lmkkI";
+
+/*
+selCancion.addEventListener('click',(e)=>{
+selCancion=e.target.textContent;
+  for (let i=0; i<baseDatosJSON.canciones.length; i++){
+    if(baseDatosJSON.canciones[i].nombre === selCancion.textContent)
+      linkCancion=baseDatosJSON.canciones[i].link;
+  }
+});*/
+// Asignar este código cuando creas cada botón de canción:
+let botonCancion = document.getElementById('prueba');
+console.log(botonCancion.textContent);
+  console.log("n");
+  botonCancion.addEventListener("click", (e) => {
+    const nombreCancion = e.target.textContent.trim();
+     // Obtener el texto
+     
+    for (let i = 0; i < baseDatosJSON.canciones.length; i++) {
+      console.log("funcion");
+      if (baseDatosJSON.canciones[i].nombre === nombreCancion) {
+        const linkCancion = baseDatosJSON.canciones[i].link;
+        console.log(linkCancion);
+
+        // Si el reproductor ya está listo, carga el nuevo video
+        if (player && typeof player.loadVideoById === "function") {
+          //onYouTubeIframeAPIReady();
+          player.loadVideoById(linkCancion);
+        } else {
+          // Si aún no se ha creado el reproductor, se creará con ese link
+          onYouTubeIframeAPIReady(linkCancion);
+        }
+        break;
+      }
+    }
+  });
+
+//video
+let player;
+let duration = 0;
+let lastVolume = 100;
+let previousVolume;
+let updateInterval;
+
+const seekBar = document.getElementById("seekBar");
+const volumeSlider = document.getElementById("volumeSlider");
+const playPauseBtn = document.getElementById("playPausebtn");
+const muteBtn = document.getElementById("muteBtn");
+
+const vidDuration = document.getElementById("duration");
+const currentTimeSpan = document.getElementById("currentTime");
+let currentVolume;
+
+function onPlayerStateChange(event){
+    if (event.data == YT.PlayerState.PLAYING) {
+        playPauseBtn.textContent = "⏸";
+    } 
+    else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+        playPauseBtn.textContent = "▶";
+    }
+    if (event.data === YT.PlayerState.ENDED) {
+        clearInterval(updateInterval);
+    }
+}
+
+function onYouTubeIframeAPIReady(linkCancion) {
+    player = new YT.Player("player", {
+        videoId: linkCancion,
+        playerVars: {
+            controls: 0,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+        },
+        events: {
+            onReady: onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        },
+    });
+  player.id="player";
+}
+
+function onPlayerReady(event) {
+    duration = player.getDuration();
+    player.mute(); // empieza en mute para evitar bloqueo de autoplay
+    player.playVideo();
+
+    seekBar.max = duration;
+    volumeSlider.value = previousVolume;
+    previousVolume = player.getVolume();
+
+    updateInterval = setInterval(() => {
+        if (player && player.getPlayerState===YT.PlayerState.PLAYING) {
+            seekBar.value=player.getCurrentTime();
+        }
+
+        // Detecta cambio externo de volumen y actualiza el slider
+        currentVolume = player.getVolume();
+        if (currentVolume !== previousVolume) {
+            volumeSlider.value = currentVolume;
+            previousVolume = currentVolume;
+        }
+
+        // Actualiza ícono del botón mute según estado
+        if (player.isMuted()) {
+            muteBtn.textContent = "🔇";
+        } else {
+            muteBtn.textContent = "🔊";
+        }
+    },100);
+}
+
+// ▶️⏸️ Play/Pause
+playPauseBtn.addEventListener("click", () => {
+    let state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+        playPauseBtn.textContent = "▶️";
+    } else {
+        player.playVideo();
+        playPauseBtn.textContent = "⏸️";
+    }
+});
+
+// 🔊 Control de volumen con slider
+volumeSlider.addEventListener("input", () => {
+    const volume = parseInt(volumeSlider.value, 10);
+    player.setVolume(volume);
+
+    // Si estaba muteado y se mueve el slider, se desmutea
+    if (player.isMuted() && volume > 0) {
+        player.unMute();
+    }
+
+    lastVolume = volume;
+    previousVolume = volume;
+});
+
+// 🔇 Mute/Unmute con botón
+muteBtn.addEventListener("click", () => {
+    if (player.isMuted()) {
+        player.unMute();
+        volumeSlider.value = lastVolume;
+    } else {
+        player.mute();
+    }
+});
+
+// ⏩ Barra de duración (seek)
+seekBar.addEventListener("input", () => {
+    let seekTo = seekBar.value;
+    console.log("AA")
+    player.seekTo(seekTo, true);
 });
